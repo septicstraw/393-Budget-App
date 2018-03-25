@@ -13,5 +13,33 @@ public class Transaction
 		transactionAmount = amount;
 		transactionDate = date;
 		transactionNotes = note;
-	}	
+	}
+	
+	public double getTransactionAmount() {
+		return transactionAmount;
+	}
+
+	public void setTransactionAmount(double transactionAmount) {
+		this.transactionAmount = transactionAmount;
+	}
+
+	public Date getTransactionDate() {
+		return transactionDate;
+	}
+
+	public void setTransactionDate(Date transactionDate) {
+		this.transactionDate = transactionDate;
+	}
+
+	public String getTransactionNotes() {
+		return transactionNotes;
+	}
+
+	public void setTransactionNotes(String transactionNotes) {
+		this.transactionNotes = transactionNotes;
+	}
+
+	public void setTransactionCategory(Category transactionCategory) {
+		this.transactionCategory = transactionCategory;
+	}
 }
