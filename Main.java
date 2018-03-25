@@ -9,5 +9,5 @@ public class Main
 	String lastName;
 	ArrayList<Category> categoryList = new ArrayList<Category>();
 	double initialFunds;
-	
+	ArrayList<Transaction> transactionLog = new ArrayList<Transaction>();
 }
