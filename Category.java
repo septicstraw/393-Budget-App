@@ -1,4 +1,4 @@
-import java.util.ArrayList;
+import java.util.List;
 
 public class Category 
 {
@@ -6,7 +6,7 @@ public class Category
 	public double initialFunds;
 	public double currentFunds;
 	public int priority;
-	public ArrayList<Category> subcategories;
+	public List<Category> subcategories;
 	
 	public Category(String name, double initialFunds, int priority) {
 		this.name = name;
@@ -47,11 +47,11 @@ public class Category
 		this.priority = priority;
 	}
 	
-	public ArrayList<Category> getSubcategories() {
+	public List<Category> getSubcategories() {
 		return subcategories;
 	}
 	
-	public void setSubcategories(ArrayList<Category> subcategories) {
+	public void setSubcategories(List<Category> subcategories) {
 		this.subcategories = subcategories;
 	}
 	
