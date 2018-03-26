@@ -57,3 +57,28 @@ public class Category
 	}
 	
 }
+
+//I'll be honest I have no idea where stuff goes anymore
+//So I'm gonna add the methods here and then you can relocate them to wherever they go
+/*
+* public Date checkDate()
+* {
+* 		return Calendar.getInstance();
+* }
+* 
+* public void decreaseMoney(double amount)
+* {
+* 		currentFunds -= amount;
+* }
+* 
+* public void addMoney(double amount)
+* {
+* 		currentFunds += amount;
+* }
+* 
+* public void resetMoney()
+* {
+* 		currentFunds = initialFunds();
+* } 
+* 
+*/
