@@ -1,8 +1,20 @@
 package com.ex.bgt.domain;
 import java.util.List;
 
+import javax.persistence.Column;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+
 public class Category 
 {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(generator="category_id_seq", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="category_id_seq", sequenceName="category_id_seq", allocationSize=1)
+	int id;
+	
 	public String name;
 	public double initialFunds;
 	public double currentFunds;

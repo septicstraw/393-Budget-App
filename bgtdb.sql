@@ -38,11 +38,11 @@ SET default_with_oids = false;
 --
 
 CREATE TABLE public.category (
+    id serial NOT NULL,
     name character(30) NOT NULL,
     initialfunds real NOT NULL,
     currentfunds real NOT NULL,
     priority integer NOT NULL,
-    id integer NOT NULL,
     userid integer
 );
 
@@ -54,7 +54,7 @@ ALTER TABLE public.category OWNER TO postgres;
 --
 
 CREATE TABLE public.income (
-    id integer NOT NULL,
+    id serial NOT NULL,
     amount real NOT NULL,
     rollover real NOT NULL,
     payperiod integer NOT NULL,
@@ -69,7 +69,7 @@ ALTER TABLE public.income OWNER TO postgres;
 --
 
 CREATE TABLE public.subcategory (
-    id integer NOT NULL,
+    id serial NOT NULL,
     name character(30) NOT NULL,
     initialfunds real NOT NULL,
     currentfunds real NOT NULL,
@@ -85,7 +85,7 @@ ALTER TABLE public.subcategory OWNER TO postgres;
 --
 
 CREATE TABLE public.transaction (
-    id integer NOT NULL,
+    id serial NOT NULL,
     amount real NOT NULL,
     date timestamp without time zone NOT NULL,
     notes text,
@@ -100,7 +100,7 @@ ALTER TABLE public.transaction OWNER TO postgres;
 --
 
 CREATE TABLE public.users (
-    id integer NOT NULL,
+    id serial NOT NULL,
     email text NOT NULL,
     password integer NOT NULL,
     first_name text NOT NULL,

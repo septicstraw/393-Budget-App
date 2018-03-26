@@ -1,19 +1,47 @@
 package com.ex.bgt.domain;
 
-import java.sql.Date;
 import java.util.List;
-import java.util.Calendar;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.FetchType;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "users")
 public class User 
 {
+	@Id
+	@Column(name = "id")
+	@GeneratedValue(generator="user_id_seq", strategy=GenerationType.SEQUENCE)
+	@SequenceGenerator(name="user_id_seq", sequenceName="user_id_seq", allocationSize=1)
 	int id;
+	
+	@Column(name = "email")
 	String email;
+	
+	@Column(name = "password")
 	int password;
+	
+	@Column(name = "firstName")
 	String firstName;
+	
+	@Column(name = "lastName")
 	String lastName;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	List<Category> categoryList;
-	double initialFunds;
-	List<Transaction> transactionLog;
+	
+	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
+	List<Transaction> transactionList;
+	
+	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
 	Income userIncome;
 	
 	public int getID() {
@@ -64,20 +92,13 @@ public class User
 		this.categoryList = categoryList;
 	}
 	
-	public double getInitialFunds() {
-		return initialFunds;
+	
+	public List getTransactionList() {
+		return transactionList;
 	}
 	
-	public void setInitialFunds(double initialFunds) {
-		this.initialFunds = initialFunds;
-	}
-	
-	public List getTransactionLog() {
-		return transactionLog;
-	}
-	
-	public void setTransactionLog(List transactionLog) {
-		this.transactionLog = transactionLog;
+	public void setTransactionList(List transactionList) {
+		this.transactionList = transactionList;
 	}
 }
 
