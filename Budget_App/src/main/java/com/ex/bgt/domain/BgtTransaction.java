@@ -14,7 +14,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name = "transaction")
-public class Transaction 
+public class BgtTransaction 
 {
 	@Id
 	@Column(name = "id")
@@ -40,7 +40,7 @@ public class Transaction
 	private User user;
 	
 		
-	public Transaction(int id, double transactionAmount, Timestamp transactionDate, String transactionNotes,
+	public BgtTransaction(int id, double transactionAmount, Timestamp transactionDate, String transactionNotes,
 			Category transactionCategory, User user) {
 		super();
 		this.id = id;
@@ -51,7 +51,7 @@ public class Transaction
 		this.user = user;
 	}
 	
-	public Transaction(double transactionAmount, Timestamp transactionDate, String transactionNotes,
+	public BgtTransaction(double transactionAmount, Timestamp transactionDate, String transactionNotes,
 			Category transactionCategory, User user) {
 		super();
 		this.transactionAmount = transactionAmount;

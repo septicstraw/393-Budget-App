@@ -39,7 +39,7 @@ public class User
 	private List<Category> categoryList;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	private List<Transaction> transactionList;
+	private List<BgtTransaction> transactionList;
 	
 	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
 	private Income income;
