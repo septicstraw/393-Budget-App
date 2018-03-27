@@ -3,6 +3,7 @@ package com.ex.impl;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
@@ -29,11 +30,10 @@ public class UserDaoImpl implements UserDao {
 
 	public User getUserByEmail(String email) {
 		Session session = ConnectionUtil.getSession();
-		List<User> users = session.createCriteria(User.class).add(Restrictions.eq("email", email)).list();
-		if (users.size() < 1)
-			return null;
-		else 
-			return users.get(0);
+		Criteria c = session.createCriteria(User.class);
+		c.add(Restrictions.eq("email", email));
+		User usr = (User) c.uniqueResult();
+		return usr;
 	}
 
 	public Serializable saveUser(User usr) {
