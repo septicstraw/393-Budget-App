@@ -16,20 +16,20 @@ public class Transaction
 	@Column(name = "id")
 	@GeneratedValue(generator="transaction_id_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="transaction_id_seq", sequenceName="transaction_id_seq", allocationSize=1)
-	int id;
+	private int id;
 	
 	@Column(name = "amount")
-	double transactionAmount;
+	private double transactionAmount;
 	
 	@Column(name = "date")
-	Timestamp transactionDate;
+	private Timestamp transactionDate;
 	
 	@Column(name = "notes")
-	String transactionNotes;
+	private String transactionNotes;
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	Category transactionCategory;
+	private Category transactionCategory;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")

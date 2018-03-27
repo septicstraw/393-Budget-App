@@ -19,22 +19,28 @@ public class SubCategory
 	private int id;
 	
 	@Column(name = "name")
-	public String name;
+	private String name;
 	
 	@Column(name = "initialFunds")
-	public double initialFunds;
+	private double initialFunds;
 	
 	@Column(name = "currentFunds")
-	public double currentFunds;
+	private double currentFunds;
 	
 	@Column(name = "priority")
-	public int priority;
+	private int priority;
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	public Category parentCategory;
+	private Category parentCategory;
 	
 	public SubCategory(String name, double initialFunds, int priority) {
+		this.name = name;
+		this.initialFunds = initialFunds;
+		this.currentFunds = initialFunds;
+	}
+	public SubCategory(int id, String name, double initialFunds, int priority) {
+		this.id = id;
 		this.name = name;
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;

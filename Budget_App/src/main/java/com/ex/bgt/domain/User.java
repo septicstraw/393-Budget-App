@@ -21,28 +21,42 @@ public class User
 	@Column(name = "id")
 	@GeneratedValue(generator="user_id_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="user_id_seq", sequenceName="user_id_seq", allocationSize=1)
-	int id;
+	private int id;
 	
 	@Column(name = "email")
-	String email;
+	private String email;
 	
 	@Column(name = "password")
-	int password;
+	private int password;
 	
 	@Column(name = "firstName")
-	String firstName;
+	private String firstName;
 	
 	@Column(name = "lastName")
-	String lastName;
+	private String lastName;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	List<Category> categoryList;
+	private List<Category> categoryList;
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
-	List<Transaction> transactionList;
+	private List<Transaction> transactionList;
 	
 	@OneToOne(mappedBy = "user", fetch = FetchType.LAZY)
-	Income userIncome;
+	private Income userIncome;
+
+	public User(int id, String email, int password, String firstName, String lastName, Income income) {
+		this.id = id;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.income = income;
+	}
+	public User(String email, int password, String firstName, String lastName, Income income) {
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.income = income;
+	}
 	
 	public int getID() {
 		return id;
