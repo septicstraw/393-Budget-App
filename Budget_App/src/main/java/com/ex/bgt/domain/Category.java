@@ -1,10 +1,15 @@
 package com.ex.bgt.domain;
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
 
 public class Category 
@@ -15,11 +20,24 @@ public class Category
 	@SequenceGenerator(name="category_id_seq", sequenceName="category_id_seq", allocationSize=1)
 	int id;
 	
+	@Column(name = "name")
 	public String name;
+	
+	@Column(name = "initialFunds")
 	public double initialFunds;
+	
+	@Column(name = "currentFunds")
 	public double currentFunds;
+	
+	@Column(name = "priority")
 	public int priority;
+	
+	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
 	public List<Category> subcategories;
+	
+	@ManyToOne
+	@JoinColumn(name = "user_id")
+	private User user;
 	
 	public Category(String name, double initialFunds, int priority) {
 		this.name = name;
