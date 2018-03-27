@@ -29,6 +29,11 @@ public class Income {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	public Income(double amount, double rollover, int payPeriod) {
+		this.amount = amount;
+		this.rollover = rollover;
+		this.payPeriod = payPeriod;
+	}
 	public Income(int id, double amount, double rollover, int payPeriod) {
 		this.id = id;
 		this.amount = amount;

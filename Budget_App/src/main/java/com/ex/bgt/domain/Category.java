@@ -18,28 +18,35 @@ public class Category
 	@Column(name = "id")
 	@GeneratedValue(generator="category_id_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="category_id_seq", sequenceName="category_id_seq", allocationSize=1)
-	int id;
+	private int id;
 	
 	@Column(name = "name")
-	public String name;
+	private String name;
 	
 	@Column(name = "initialFunds")
-	public double initialFunds;
+	private double initialFunds;
 	
 	@Column(name = "currentFunds")
-	public double currentFunds;
+	private double currentFunds;
 	
 	@Column(name = "priority")
-	public int priority;
+	private int priority;
 	
 	@OneToMany(mappedBy = "category", cascade = CascadeType.ALL,fetch = FetchType.LAZY)
-	public List<Category> subcategories;
+	private List<Category> subcategories;
 	
 	@ManyToOne
 	@JoinColumn(name = "user_id")
 	private User user;
 	
 	public Category(String name, double initialFunds, int priority) {
+		this.name = name;
+		this.initialFunds = initialFunds;
+		this.currentFunds = initialFunds;
+		this.priority = priority;
+	}
+	public Category(int id, String name, double initialFunds, int priority) {
+		this.id = id;
 		this.name = name;
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
