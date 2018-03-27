@@ -12,12 +12,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
-        User usr = new User();
-        usr.setEmail("nickverrilli@gmail.com");
-        usr.setPass(88204);
-        usr.setFirstName("Nick");
-        usr.setLastName("Verrilli");
+        User usr = new User("nickverrilli@gmail.com", 88204, "Nick", "Verrilli");
         
         UserDao usrDao = new UserDaoImpl();
         usrDao.saveUser(usr);

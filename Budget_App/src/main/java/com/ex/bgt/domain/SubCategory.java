@@ -3,13 +3,17 @@ package com.ex.bgt.domain;
 import java.util.List;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
+@Entity
+@Table(name = "subcategory")
 public class SubCategory 
 {
 	@Id
@@ -32,7 +36,7 @@ public class SubCategory
 	
 	@ManyToOne
 	@JoinColumn(name = "category_id")
-	private Category parentCategory;
+	private Category category;
 	
 	public SubCategory(String name, double initialFunds, int priority) {
 		this.name = name;
@@ -79,12 +83,12 @@ public class SubCategory
 		this.priority = priority;
 	}
 	
-	public Category getParentCategory() {
-		return parentCategory;
+	public Category getCategory() {
+		return category;
 	}
 	
-	public void setParentCategory(Category parentCategory) {
-		this.parentCategory = parentCategory;
+	public void setCategory(Category category) {
+		this.category = category;
 	}
 	
 }
