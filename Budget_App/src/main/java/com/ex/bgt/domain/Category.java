@@ -41,7 +41,7 @@ public class Category
 	private List<SubCategory> subcategories;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userid")
 	private User user;
 	
 	public Category(String name, double initialFunds, int priority) {

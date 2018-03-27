@@ -36,7 +36,7 @@ public class BgtTransaction
 	private Category transactionCategory;
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userid")
 	private User user;
 	
 		

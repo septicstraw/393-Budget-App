@@ -30,7 +30,7 @@ public class Income {
 	private int payPeriod; //Number of days of pay period
 	
 	@ManyToOne
-	@JoinColumn(name = "user_id")
+	@JoinColumn(name = "userid")
 	private User user;
 	
 	public Income(double amount, double rollover, int payPeriod) {
