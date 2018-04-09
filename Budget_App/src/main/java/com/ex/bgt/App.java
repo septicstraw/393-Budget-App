@@ -17,10 +17,10 @@ public class App
     public static void main( String[] args )
     {
         User usr = new User("nickverrilli@gmail.com", 88204, "Nick", "Verrilli");
-        
         UserDao usrDao = new UserDaoImpl();
         usrDao.saveUser(usr);
         usr = usrDao.getUserByEmail("nickverrilli@gmail.com");
+        
         List<Category> cats = usr.getCategoryList();
         for(Category c: cats)
         {

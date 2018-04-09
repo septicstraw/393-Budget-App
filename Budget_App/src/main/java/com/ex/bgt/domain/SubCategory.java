@@ -50,6 +50,7 @@ public class SubCategory
 		this.currentFunds = initialFunds;
 		this.priority = priority;
 	}
+	public SubCategory() {}
 	
 	public String getName() {
 		return name;

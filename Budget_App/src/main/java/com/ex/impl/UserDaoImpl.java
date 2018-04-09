@@ -13,6 +13,8 @@ import com.ex.dao.UserDao;
 import com.ex.dao.util.ConnectionUtil;
 
 public class UserDaoImpl implements UserDao {
+	
+	//public UserDaoImpl() {}
 
 	public User getUserById(int id) {
 		Session session = ConnectionUtil.getSession();

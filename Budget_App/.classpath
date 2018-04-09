@@ -24,5 +24,6 @@
 	</classpathentry>
 	<classpathentry kind="lib" path="jars/ojdbc7.jar"/>
 	<classpathentry kind="lib" path="jars/postgresql-42.2.2.jar"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.junit.JUNIT_CONTAINER/4"/>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>

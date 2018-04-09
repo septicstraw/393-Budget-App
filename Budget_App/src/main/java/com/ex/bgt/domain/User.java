@@ -57,6 +57,7 @@ public class User
 		this.firstName = firstName;
 		this.lastName = lastName;
 	}
+	public User() {}
 	
 	public int getID() {
 		return id;
