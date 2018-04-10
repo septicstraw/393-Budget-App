@@ -39,6 +39,7 @@ public class BgtTransaction
 	@JoinColumn(name = "userid")
 	private User user;
 	
+	public BgtTransaction() {}
 		
 	public BgtTransaction(int id, double transactionAmount, Timestamp transactionDate, String transactionNotes,
 			Category transactionCategory, User user) {

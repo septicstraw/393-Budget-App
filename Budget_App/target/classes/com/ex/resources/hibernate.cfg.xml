@@ -4,17 +4,17 @@
   "http://hibernate.sourceforge.net/hibernate-configuration-3.0.dtd">
 <hibernate-configuration>
 	<session-factory>
-		 <property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
-        <property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
-        <property name="hibernate.connection.username">postgres</property>
-        <property name="hibernate.connection.password">p4ssw0rd</property>
-        <property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/budgetdb</property>
+		<property name="hibernate.dialect">org.hibernate.dialect.PostgreSQLDialect</property>
+		<property name="hibernate.connection.driver_class">org.postgresql.Driver</property>
+		<property name="hibernate.connection.username">postgres</property>
+		<property name="hibernate.connection.password">p4ssw0rd</property>
+		<property name="hibernate.connection.url">jdbc:postgresql://localhost:5432/budgetdb</property>
 		<property name="hibernate.show_sql">true</property>
-		<property name="hbm2ddl.auto">create</property>
-		<mapping class="com.ex.bgt.domain.User"/>
-		<mapping class="com.ex.bgt.domain.Category"/>
-		<mapping class="com.ex.bgt.domain.Income"/>
-		<mapping class="com.ex.bgt.domain.SubCategory"/>
-		<mapping class="com.ex.bgt.domain.BgtTransaction"/>
+		<property name="hbm2ddl.auto">validate</property>
+		<mapping class="com.ex.bgt.domain.User" />
+		<mapping class="com.ex.bgt.domain.Category" />
+		<mapping class="com.ex.bgt.domain.Income" />
+		<mapping class="com.ex.bgt.domain.SubCategory" />
+		<mapping class="com.ex.bgt.domain.BgtTransaction" />
 	</session-factory>
 </hibernate-configuration>

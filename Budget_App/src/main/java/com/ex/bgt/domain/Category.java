@@ -57,7 +57,9 @@ public class Category
 		this.currentFunds = initialFunds;
 		this.priority = priority;
 	}
-	public Category() {}
+	public Category() {
+		super();
+	}
 	
 	public String getName() {
 		return name;

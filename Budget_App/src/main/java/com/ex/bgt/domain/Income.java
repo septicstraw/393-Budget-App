@@ -33,6 +33,10 @@ public class Income {
 	@JoinColumn(name = "userid")
 	private User user;
 	
+	public Income() {
+		super();
+	}
+	
 	public Income(double amount, double rollover, int payPeriod) {
 		this.amount = amount;
 		this.rollover = rollover;

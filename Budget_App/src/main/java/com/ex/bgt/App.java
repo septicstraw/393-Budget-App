@@ -16,16 +16,19 @@ public class App
 {
     public static void main( String[] args )
     {
-        User usr = new User("nickverrilli@gmail.com", 88204, "Nick", "Verrilli");
+        //User usr = new User("nverrilli@gmail.com", 88204, "Nick", "Verrilli");
+    	User usr;
         UserDao usrDao = new UserDaoImpl();
-        usrDao.saveUser(usr);
-        usr = usrDao.getUserByEmail("nickverrilli@gmail.com");
+        //usrDao.saveUser(usr);
+        usr = usrDao.getUserById(1);
+        //usr = usrDao.getUserByEmail("nverrilli@gmail.com");
         
-        List<Category> cats = usr.getCategoryList();
+        /*List<Category> cats = usr.getCategoryList();
         for(Category c: cats)
         {
         	System.out.println(c.getName());
-        }
+        }*/
+        System.out.println(usr.getEmail());
         
     }
 }
