@@ -83,6 +83,7 @@ public class UserMethods
 	
 	public void rearrange(Category c)
 	{
+		List<Category> catList = thisGuy.getCategoryList();
 		for(Category category: catList)
 		{
 			if(category.getPriority() < c.getPriority())
@@ -106,7 +107,7 @@ public class UserMethods
 		catDao.saveCategory(c);
 	}
 	
-	public void changeCategoryFunds(Category c, SubCategory s, double amount, User thisGuy)
+	public void changeSubCategoryFunds(Category c, SubCategory s, double amount, User thisGuy)
 	{
 		s.setInitialFunds(amount);
 		
