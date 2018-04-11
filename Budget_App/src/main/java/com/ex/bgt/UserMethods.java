@@ -1,5 +1,6 @@
 package com.ex.bgt;
 
+import java.util.Calendar;
 import java.util.List;
 
 import com.ex.bgt.domain.BgtTransaction;
@@ -10,7 +11,10 @@ import com.ex.dao.CategoryDao;
 import com.ex.dao.UserDao;
 import com.ex.impl.CategoryDaoImpl;
 import com.ex.impl.UserDaoImpl;
+
 import java.sql.Timestamp;
+
+import sun.util.calendar.BaseCalendar.Date;
 
 public class UserMethods 
 {
@@ -24,6 +28,11 @@ public class UserMethods
 		List tempList = thisGuy.getTransactionList();
 		tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy));
 		thisGuy.setTransactionList(tempList);
+		
+		if(c.getCurrentFunds() < 10)
+		{
+			rearrange(c);
+		}
 		
 		UserDao usDao = new UserDaoImpl();
 		usDao.saveUser(thisGuy);
@@ -45,6 +54,8 @@ public class UserMethods
 		usDao.saveUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
 		catDao.saveCategory(c);
+		SubCategoryDao subDao = new SubCategoryDaoImpl();
+		subDao.saveSubCategory(s);
 	}
 	
 	public double rollover(User thisGuy)
@@ -59,6 +70,52 @@ public class UserMethods
 			catDao.saveCategory(category);
 		}
 		return rollingTotal;
+	}
+	
+	public void checkDate(User thisGuy)
+	{
+		Date date = Calendar.getInstance().getTime();
+		if(date.getDayOfMonth() == 1)
+		{
+			rollover(thisGuy);
+		}
+	}
+	
+	public void rearrange(Category c)
+	{
+		for(Category category: catList)
+		{
+			if(category.getPriority() < c.getPriority())
+			{
+				if(category.getCurrentFunds() > 50)
+				{
+					changeMoney(category, -25, "Automatic Readjusting", thisGuy);
+					changeMoney(c, 25, "Automatic Readjusting", thisGuy);
+				}
+			}
+		}
+	}
+	
+	public void changeCategoryFunds(Category c, double amount, User thisGuy)
+	{
+		c.setInitialFunds(amount);
+		
+		UserDao usDao = new UserDaoImpl();
+		usDao.saveUser(thisGuy);
+		CategoryDao catDao = new CategoryDaoImpl();
+		catDao.saveCategory(c);
+	}
+	
+	public void changeCategoryFunds(Category c, SubCategory s, double amount, User thisGuy)
+	{
+		s.setInitialFunds(amount);
+		
+		UserDao usDao = new UserDaoImpl();
+		usDao.saveUser(thisGuy);
+		CategoryDao catDao = new CategoryDaoImpl();
+		catDao.saveCategory(c);
+		SubCategoryDao subDao = new SubCategoryDaoImpl();
+		subDao.saveSubCategory(s);
 	}
 	
 	//Shows all categories and how much money is in each
