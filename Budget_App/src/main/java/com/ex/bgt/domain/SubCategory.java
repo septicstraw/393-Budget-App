@@ -38,17 +38,19 @@ public class SubCategory
 	@JoinColumn(name = "category_id")
 	private Category category;
 	
-	public SubCategory(String name, double initialFunds, int priority) {
+	public SubCategory(String name, double initialFunds, int priority, Category category) {
 		this.name = name;
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
+		this.category = category;
 	}
-	public SubCategory(int id, String name, double initialFunds, int priority) {
+	public SubCategory(int id, String name, double initialFunds, int priority, Category category) {
 		this.id = id;
 		this.name = name;
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
+		this.category = category;
 	}
 	public SubCategory() {}
 	

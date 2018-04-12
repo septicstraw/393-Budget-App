@@ -37,10 +37,11 @@ public class Income {
 		super();
 	}
 	
-	public Income(double amount, double rollover, int payPeriod) {
+	public Income(double amount, double rollover, int payPeriod, User user) {
 		this.amount = amount;
 		this.rollover = rollover;
 		this.payPeriod = payPeriod;
+		this.user = user;
 	}
 	public Income(int id, double amount, double rollover, int payPeriod) {
 		this.id = id;
