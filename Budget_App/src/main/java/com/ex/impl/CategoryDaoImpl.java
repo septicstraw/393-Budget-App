@@ -17,8 +17,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public Category getCategoryById(int id) {
 		Session session = ConnectionUtil.getSession();
 		Category cat = (Category) session.load(Category.class, id);
-		session.close();
-
+		
 		return cat;
 	}
 	

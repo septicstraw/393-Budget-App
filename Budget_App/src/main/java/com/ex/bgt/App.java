@@ -4,7 +4,9 @@ import java.util.List;
 
 import com.ex.bgt.domain.Category;
 import com.ex.bgt.domain.User;
+import com.ex.dao.CategoryDao;
 import com.ex.dao.UserDao;
+import com.ex.impl.CategoryDaoImpl;
 import com.ex.impl.UserDaoImpl;
 
 
@@ -19,7 +21,7 @@ public class App
         //User usr = new User("nverrilli@gmail.com", 88204, "Nick", "Verrilli");
     	User usr;
         UserDao usrDao = new UserDaoImpl();
-        //usrDao.saveUser(usr);
+        //int id = (int) usrDao.saveUser(usr);
         usr = usrDao.getUserById(1);
         //usr = usrDao.getUserByEmail("nverrilli@gmail.com");
         
@@ -28,7 +30,18 @@ public class App
         {
         	System.out.println(c.getName());
         }*/
-        System.out.println(usr.getEmail());
+        //System.out.println(usr.getEmail());
+    	
+    	Category cat = new Category();
+    	cat.setCurrentFunds(100);
+    	cat.setInitialFunds(100);
+    	cat.setName("Electronics");
+    	cat.setPriority(1);
+    	
+    	CategoryDao catDao = new CategoryDaoImpl();
+    	int id = (Integer) catDao.saveCategory(cat);
+    	cat = catDao.getCategoryById(id);
+    	System.out.println(cat.getName());
         
     }
     

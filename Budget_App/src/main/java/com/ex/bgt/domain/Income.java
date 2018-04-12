@@ -43,11 +43,12 @@ public class Income {
 		this.payPeriod = payPeriod;
 		this.user = user;
 	}
-	public Income(int id, double amount, double rollover, int payPeriod) {
+	public Income(int id, double amount, double rollover, int payPeriod, User user) {
 		this.id = id;
 		this.amount = amount;
 		this.rollover = rollover;
 		this.payPeriod = payPeriod;
+		this.user = user;
 	}
 	
 	public int getId() {
