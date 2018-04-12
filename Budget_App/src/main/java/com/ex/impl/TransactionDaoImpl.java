@@ -15,7 +15,7 @@ import com.ex.dao.util.ConnectionUtil;
 public class TransactionDaoImpl implements TransactionDao {
 
 	public BgtTransaction getTransactionById(int id) {
-		Session session = ConnectionUtil.getSession();
+		Session session = ConnectionUtil.getSessionFactory().openSession();
 		BgtTransaction cat = (BgtTransaction) session.load(BgtTransaction.class, id);
 		session.close();
 
@@ -23,7 +23,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	}
 	
 	public BgtTransaction getTransactionByName(String name) {
-		Session session = ConnectionUtil.getSession();
+		Session session = ConnectionUtil.getSessionFactory().openSession();
 		Criteria c = session.createCriteria(BgtTransaction.class);
 		c.add(Restrictions.eq("name", name));
 		BgtTransaction cat = (BgtTransaction) c.uniqueResult();
@@ -32,7 +32,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	}
 
 	public List<BgtTransaction> getAllTransactions() {
-		Session session = ConnectionUtil.getSession();
+		Session session = ConnectionUtil.getSessionFactory().openSession();
 		List<BgtTransaction> cats = session.createCriteria(BgtTransaction.class).list();
 		session.close();
 
@@ -40,7 +40,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	}
 
 	public Serializable saveTransaction(BgtTransaction bgtTx) {
-		Session session = ConnectionUtil.getSession();
+		Session session = ConnectionUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		Serializable s = null;
 
@@ -61,7 +61,7 @@ public class TransactionDaoImpl implements TransactionDao {
 	}
 
 	public void deleteTransaction(BgtTransaction bgtTx) {
-		Session session = ConnectionUtil.getSession();
+		Session session = ConnectionUtil.getSessionFactory().openSession(); 
 		Transaction tx = null;
 		
 		try {
