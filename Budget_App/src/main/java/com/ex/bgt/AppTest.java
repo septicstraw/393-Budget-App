@@ -13,17 +13,32 @@ import com.ex.impl.CategoryDaoImpl;
 
 public class AppTest {
 
+	//User Tests
 	@Test
 	public void testAddUser() {
-		User usr = new User("123@gmail.com", 88204, "Nick", "Verrilli");
+		
+		User usr = new User("test1@gmail.com", 12345, "Eric", "Feinstein");
         UserDao usrDao = new UserDaoImpl();
         usrDao.saveUser(usr);
         
-        User usrResult = usrDao.getUserByEmail("123@gmail.com");
+        User usrResult = usrDao.getUserByEmail("test1@gmail.com");
         
-        assertEquals(usr.getEmail(), usrResult.getEmail());
+        assertEquals(usr.getID(), usrResult.getID());
 	}
 	
+	public void testGetSetEmail() {
+		UserDao usrDao = new UserDaoImpl();
+		User retrieve = usrDao.getUserByEmail("test1@gmail.com");
+		
+		retrieve.setEmail("test2@gmail.com");
+		usrDao.saveUser(retrieve);
+		
+		User result = usrDao.getUserByEmail("test2@gmail.com");
+		
+		assertEquals(retrieve.getEmail(), result.getEmail());
+	}
+	
+	//Category Tests
 	@Test
 	public void testAddCategory() {
 		Category ctgry = new Category("rent", 1000, 1);
