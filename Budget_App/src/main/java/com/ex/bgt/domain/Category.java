@@ -24,7 +24,7 @@ public class Category
 	@GeneratedValue(generator="category_id_seq", strategy=GenerationType.SEQUENCE)
 	@SequenceGenerator(name="category_id_seq", sequenceName="category_id_seq", allocationSize=1)
 	private int id;
-	
+
 	@Column(name = "name")
 	private String name;
 	
@@ -57,6 +57,13 @@ public class Category
 		this.currentFunds = initialFunds;
 		this.priority = priority;
 	}
+	public Category(User user, String name, double initialFunds, int priority) {
+		this.user = user;
+		this.name = name;
+		this.initialFunds = initialFunds;
+		this.currentFunds = initialFunds;
+		this.priority = priority;
+	}
 	public Category() {
 		super();
 	}
@@ -67,6 +74,10 @@ public class Category
 	
 	public void setName(String name) {
 		this.name = name;
+	}
+	
+	public int getId() {
+		return id;
 	}
 	
 	public double getInitialFunds() {

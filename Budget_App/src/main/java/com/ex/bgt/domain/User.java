@@ -1,5 +1,6 @@
 package com.ex.bgt.domain;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Column;
@@ -37,7 +38,7 @@ public class User
 	
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<Category> categoryList;
-	
+
 	@OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
 	private List<BgtTransaction> transactionList;
 	
@@ -50,12 +51,14 @@ public class User
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		categoryList = new ArrayList<Category>();
 	}
 	public User(String email, int password, String firstName, String lastName) {
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		categoryList = new ArrayList<Category>();
 	}
 	public User() {}
 	
@@ -65,14 +68,6 @@ public class User
 	
 	public void setID(int id) {
 		this.id = id;
-	}
-	
-	public String getEmail() {
-		return email;
-	}
-	
-	public void setEmail(String email) {
-		this.email = email;
 	}
 	
 	public int getPass() {
@@ -99,22 +94,22 @@ public class User
 		this.lastName = lastName;
 	}
 	
-	public List getCategoryList() {
+	public List<Category> getCategoryList() {
 		return categoryList;
 	}
 	
-	public void setCategoryList(List categoryList) {
+	public void setCategoryList(List<Category> categoryList) {
 		this.categoryList = categoryList;
 	}
 	
 	
-	public List getTransactionList() {
-		return transactionList;
-	}
-	
-	public void setTransactionList(List transactionList) {
-		this.transactionList = transactionList;
-	}
+//	public List getTransactionList() {
+//		return transactionList;
+//	}
+//	
+//	public void setTransactionList(List transactionList) {
+//		this.transactionList = transactionList;
+//	}
 }
 
 //I'll be honest I have no idea where stuff goes anymore
