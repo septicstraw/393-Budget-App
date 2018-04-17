@@ -52,6 +52,8 @@ public class User
 		this.firstName = firstName;
 		this.lastName = lastName;
 		categoryList = new ArrayList<Category>();
+		transactionList = new ArrayList<BgtTransaction>();
+		income = new Income();
 	}
 	public User(String email, int password, String firstName, String lastName) {
 		this.email = email;
@@ -59,6 +61,8 @@ public class User
 		this.firstName = firstName;
 		this.lastName = lastName;
 		categoryList = new ArrayList<Category>();
+		transactionList = new ArrayList<BgtTransaction>();
+		income = new Income();
 	}
 	public User() {}
 	
@@ -103,13 +107,25 @@ public class User
 	}
 	
 	
-//	public List getTransactionList() {
-//		return transactionList;
-//	}
-//	
-//	public void setTransactionList(List transactionList) {
-//		this.transactionList = transactionList;
-//	}
+	public List<BgtTransaction> getTransactionList() 
+	{
+		return transactionList;
+	}
+	
+	public void setTransactionList(List<BgtTransaction> transactionList) 
+	{
+		this.transactionList = transactionList;
+	}
+	
+	public Income getIncome()
+	{
+		return income;
+	}
+	
+	public void setIncome(Income incoming)
+	{
+		income = incoming;
+	}
 }
 
 //I'll be honest I have no idea where stuff goes anymore

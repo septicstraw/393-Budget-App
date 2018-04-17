@@ -2,6 +2,7 @@ package com.ex.bgt;
 
 import java.util.Calendar;
 import java.util.List;
+import java.util.Date;
 
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.bgt.domain.Category;
@@ -15,8 +16,6 @@ import com.ex.impl.SubCategoryDaoImpl;
 import com.ex.impl.UserDaoImpl;
 
 import java.sql.Timestamp;
-
-import sun.util.calendar.BaseCalendar.Date;
 
 public class UserMethods 
 {
@@ -33,7 +32,7 @@ public class UserMethods
 		
 		if(c.getCurrentFunds() < 10)
 		{
-			rearrange(c);
+			rearrange(thisGuy, c);
 		}
 		
 		UserDao usDao = new UserDaoImpl();
@@ -68,7 +67,7 @@ public class UserMethods
 		CategoryMethods catMeth = new CategoryMethods();
 		for(Category category: catList)
 		{
-			rollingTotal += catMeth.resetMoney(category);
+			rollingTotal += catMeth.resetMoney(thisGuy, category);
 			catDao.saveCategory(category);
 		}
 		return rollingTotal;
@@ -76,14 +75,14 @@ public class UserMethods
 	
 	public void checkDate(User thisGuy)
 	{
-		Date date = Calendar.getInstance().getTime();
-		if(date.getDayOfMonth() == 1)
+		Calendar cal = Calendar.getInstance();
+		if(cal.DAY_OF_MONTH == 1)
 		{
 			rollover(thisGuy);
 		}
 	}
 	
-	public void rearrange(Category c)
+	public void rearrange(User thisGuy, Category c)
 	{
 		List<Category> catList = thisGuy.getCategoryList();
 		for(Category category: catList)
