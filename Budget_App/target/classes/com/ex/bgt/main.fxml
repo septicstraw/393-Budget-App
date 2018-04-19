@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<fx:root type="AnchorPane" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ex.bgt.CategoryController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ex.bgt.CategoryController">
    <children>
       <TabPane prefHeight="717.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -36,4 +36,4 @@
         </tabs>
       </TabPane>
    </children>
-</fx:root>
+</AnchorPane>

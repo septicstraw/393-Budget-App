@@ -79,7 +79,7 @@ public class MainScene extends Application {
 				User usr = usrDao.getUserByEmail(userTextField.getText());
 				if (usr != null) {
 					try {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("mainview.fxml"));
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
 						scene.setRoot((Parent) loader.load());
 					} catch (IOException ex) {
 						Logger.getLogger(MainScene.class.getName()).log(Level.SEVERE, null, ex);

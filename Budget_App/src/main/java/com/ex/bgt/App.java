@@ -18,7 +18,7 @@ public class App
 {
     public static void main( String[] args )
     {
-        User usr = new User("nverrilli@gmail.com", 88204, "Nick", "Verrilli");
+        User usr = new User("nickverrilli@gmail.com", 1216985755, "Nick", "Verrilli");
     	//User usr;
         UserDao usrDao = new UserDaoImpl();
         int usrid = (Integer) usrDao.saveUser(usr);
