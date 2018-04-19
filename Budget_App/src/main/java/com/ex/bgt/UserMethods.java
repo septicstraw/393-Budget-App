@@ -27,7 +27,7 @@ public class UserMethods
 		c.setCurrentFunds(temp);
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		List tempList = thisGuy.getTransactionList();
-		tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy));
+		tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy, c.getCurrentFunds()));
 		thisGuy.setTransactionList(tempList);
 		
 		if(c.getCurrentFunds() < 10)
@@ -48,7 +48,7 @@ public class UserMethods
 		s.setCurrentFunds(temp);
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		List tempList = thisGuy.getTransactionList();
-		tempList.add(new BgtTransaction(amount, time, notes, c, s, thisGuy));
+		tempList.add(new BgtTransaction(amount, time, notes, c, s, thisGuy, s.getCurrentFunds()));
 		thisGuy.setTransactionList(tempList);
 		
 		UserDao usDao = new UserDaoImpl();

@@ -42,7 +42,7 @@ public class BgtTransaction
 	public BgtTransaction() {}
 		
 	public BgtTransaction(int id, double transactionAmount, Timestamp transactionDate, String transactionNotes,
-			Category transactionCategory, User user) {
+			Category transactionCategory, User user, double amountRemaining) {
 		super();
 		this.id = id;
 		this.transactionAmount = transactionAmount;
@@ -53,7 +53,7 @@ public class BgtTransaction
 	}
 	
 	public BgtTransaction(double transactionAmount, Timestamp transactionDate, String transactionNotes,
-			Category transactionCategory, User user) {
+			Category transactionCategory, User user, double amountRemaining) {
 		super();
 		this.transactionAmount = transactionAmount;
 		this.transactionDate = transactionDate;
@@ -63,7 +63,7 @@ public class BgtTransaction
 	}
 
 	public BgtTransaction(int id, double transactionAmount, Timestamp transactionDate, String transactionNotes,
-			Category transactionCategory, SubCategory transactionSubCategory, User user) {
+			Category transactionCategory, SubCategory transactionSubCategory, User user, double amountRemaining) {
 		super();
 		this.id = id;
 		this.transactionAmount = transactionAmount;
@@ -75,7 +75,7 @@ public class BgtTransaction
 	}
 	
 	public BgtTransaction(double transactionAmount, Timestamp transactionDate, String transactionNotes,
-			Category transactionCategory, SubCategory transactionSubCategory, User user) {
+			Category transactionCategory, SubCategory transactionSubCategory, User user, double amountRemaining) {
 		super();
 		this.transactionAmount = transactionAmount;
 		this.transactionDate = transactionDate;

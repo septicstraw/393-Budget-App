@@ -63,6 +63,9 @@ public class Category
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
+		List<Category> updateList = user.getCategoryList();
+		updateList.add(this);
+		user.setCategoryList(updateList);
 	}
 	public Category() {
 		super();

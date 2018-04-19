@@ -56,24 +56,31 @@ public class transactionHistory extends Application
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
         
-        User usr = new User();
+        User usr = new User(1, "email@email.com", 111, "Paul", "Palumbo");
         Category cat = new Category(usr, "Pants", 1000, 4);
+        Category cat2 = new Category(usr, "Food", 500, 4);
         Timestamp testStamp = new Timestamp(100);
-    	List<BgtTransaction> tempList = new ArrayList<BgtTransaction>();
+    	//List<BgtTransaction> tempList = new ArrayList<BgtTransaction>();
     	
     	
     	UserMethods userDo = new UserMethods();
     	CategoryMethods catDo = new CategoryMethods();
     	
-    	//userDo.changeMoney(cat, -150, "For Pants", usr);
+    	userDo.changeMoney(cat, -150, "For Pants", usr);
+    	userDo.changeMoney(cat, -250, "More Pants", usr);
+    	userDo.changeMoney(cat, 100, "Sold Pants", usr);
+    	userDo.changeMoney(cat2, -102, "Bought Food", usr);
+    	userDo.changeMoney(cat2, -203, "Too Much Food", usr);
+    	userDo.changeMoney(cat2, 100, "Sold Couch", usr);
+    	List<BgtTransaction> tempList = usr.getTransactionList();
     	
-    	tempList.add(new BgtTransaction(100, testStamp, "For more pants", cat, usr));
+    	/*tempList.add(new BgtTransaction(100, testStamp, "For more pants", cat, usr));
     	tempList.add(new BgtTransaction(-150, testStamp, "Less Pants", cat, usr));
     	tempList.add(new BgtTransaction(200, testStamp, "Some Pants", cat, usr));
     	tempList.add(new BgtTransaction(300, testStamp, "Test Pants", cat, usr));
     	tempList.add(new BgtTransaction(-100, testStamp, "Pants Pants", cat, usr));
     	tempList.add(new BgtTransaction(-356, testStamp, "Panty Pants", cat, usr));
-    	tempList.add(new BgtTransaction(100, testStamp, "Plants", cat, usr));
+    	tempList.add(new BgtTransaction(100, testStamp, "Plants", cat, usr));*/
     	int i = 1;
     	for(BgtTransaction transact: tempList)
     	{
