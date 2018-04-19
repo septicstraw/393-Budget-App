@@ -159,7 +159,7 @@ public class transactionHistory extends Application
     	
     	double rollover = userDo.rollover(usr);
     	
-    	Label rolloverPrint = new Label("Rollover:" + rollover);
+    	Label rolloverPrint = new Label("Rollover: " + rollover);
     	 grid.add(rolloverPrint, 0, i);
     	
     	i+= 2;
