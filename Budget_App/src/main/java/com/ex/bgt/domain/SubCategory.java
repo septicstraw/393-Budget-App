@@ -43,9 +43,6 @@ public class SubCategory
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.category = category;
-		List<SubCategory> updateList = category.getSubcategories();
-		updateList.add(this);
-		category.setSubcategories(updateList);
 	}
 	public SubCategory(int id, String name, double initialFunds, int priority, Category category) {
 		this.id = id;

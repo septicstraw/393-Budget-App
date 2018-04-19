@@ -75,7 +75,12 @@ public class Income {
 	public void setPayPeriod(int payPeriod) {
 		this.payPeriod = payPeriod;
 	}
-	
+	public User getUser() {
+		return user;
+	}
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 
 }

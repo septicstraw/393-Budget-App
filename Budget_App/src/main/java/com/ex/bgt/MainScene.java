@@ -64,7 +64,6 @@ public class MainScene extends Application {
         grid.add(actiontarget, 1, 6);      
         btn.setOnAction(new EventHandler<ActionEvent>() {
         	 
-            @Override
             public void handle(ActionEvent e) {
                 actiontarget.setFill(Color.FIREBRICK);
                 actiontarget.setText("Sign in button pressed");

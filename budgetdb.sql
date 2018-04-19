@@ -39,11 +39,11 @@ SET default_with_oids = false;
 
 CREATE TABLE public.category (
     id integer NOT NULL,
-    currentfunds double precision,
-    initialfunds double precision,
-    name character varying(255),
-    priority integer,
-    userid integer
+    currentfunds double precision NOT NULL,
+    initialfunds double precision NOT NULL,
+    name character varying(255) NOT NULL,
+    priority integer NOT NULL,
+    userid integer NOT NULL
 );
 
 
@@ -69,10 +69,10 @@ ALTER TABLE public.category_id_seq OWNER TO postgres;
 
 CREATE TABLE public.income (
     id integer NOT NULL,
-    amount double precision,
-    payeriod integer,
-    rollover double precision,
-    userid integer
+    amount double precision NOT NULL,
+    payeriod integer NOT NULL,
+    rollover double precision NOT NULL,
+    userid integer NOT NULL
 );
 
 
@@ -98,11 +98,11 @@ ALTER TABLE public.income_id_seq OWNER TO postgres;
 
 CREATE TABLE public.subcategory (
     id integer NOT NULL,
-    currentfunds double precision,
-    initialfunds double precision,
-    name character varying(255),
-    priority integer,
-    category_id integer
+    currentfunds double precision NOT NULL,
+    initialfunds double precision NOT NULL,
+    name character varying(255) NOT NULL,
+    priority integer NOT NULL,
+    category_id integer NOT NULL
 );
 
 
@@ -128,11 +128,11 @@ ALTER TABLE public.subcategory_id_seq OWNER TO postgres;
 
 CREATE TABLE public.transaction (
     id integer NOT NULL,
-    amount double precision,
-    date timestamp without time zone,
+    amount double precision NOT NULL,
+    date timestamp without time zone NOT NULL,
     notes character varying(255),
-    category_id integer,
-    userid integer
+    category_id integer NOT NULL,
+    userid integer NOT NULL
 );
 
 
@@ -158,10 +158,10 @@ ALTER TABLE public.transaction_id_seq OWNER TO postgres;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email character varying(255),
-    first_name character varying(255),
-    last_name character varying(255),
-    password integer
+    email character varying(255) NOT NULL,
+    first_name character varying(255) NOT NULL,
+    last_name character varying(255) NOT NULL,
+    password integer NOT NULL
 );
 
 

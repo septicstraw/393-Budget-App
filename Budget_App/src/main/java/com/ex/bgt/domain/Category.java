@@ -50,15 +50,14 @@ public class Category
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
-		subcategories = new ArrayList<SubCategory>();
 	}
-	public Category(int id, String name, double initialFunds, int priority) {
+	public Category(int id, User user, String name, double initialFunds, int priority) {
 		this.id = id;
 		this.name = name;
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
-		subcategories = new ArrayList<SubCategory>();
+		this.user = user;
 	}
 	public Category(User user, String name, double initialFunds, int priority) {
 		this.user = user;
@@ -66,11 +65,8 @@ public class Category
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
-		subcategories = new ArrayList<SubCategory>();
-		List<Category> updateList = user.getCategoryList();
-		updateList.add(this);
-		user.setCategoryList(updateList);
 	}
+	
 	public Category() {
 		super();
 	}
@@ -117,6 +113,14 @@ public class Category
 	
 	public void setSubcategories(List<SubCategory> subcategories) {
 		this.subcategories = subcategories;
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
 	}
 	
 }

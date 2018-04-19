@@ -57,7 +57,7 @@ public class transactionHistory extends Application
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
         grid.add(scenetitle, 0, 0, 2, 1);
         
-        User usr = new User(1, "email@email.com", 111, "Paul", "Palumbo");
+        User usr = new User("email@email.com", 111, "Paul", "Palumbo");
         Category cat = new Category(usr, "Pants", 1000, 4);
         Category cat2 = new Category(usr, "Food", 500, 3);
         Category subCat = new Category(usr, "Fun", 500, 2);

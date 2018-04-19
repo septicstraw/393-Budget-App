@@ -14,7 +14,7 @@ public interface UserDao {
 	
 	public User getUserByEmail(String email);
 	
-	public void saveUser(User usr);
+	public Serializable saveUser(User usr);
 
 	public void deleteUser(User retrieve);
 

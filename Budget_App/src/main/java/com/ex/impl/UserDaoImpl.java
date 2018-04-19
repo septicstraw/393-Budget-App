@@ -8,14 +8,13 @@ import org.hibernate.Session;
 import org.hibernate.Transaction;
 import org.hibernate.criterion.Restrictions;
 
-import com.ex.bgt.domain.Category;
 import com.ex.bgt.domain.User;
 import com.ex.dao.UserDao;
 import com.ex.dao.util.ConnectionUtil;
 
 public class UserDaoImpl implements UserDao {
-	
-	//public UserDaoImpl() {}
+
+	// public UserDaoImpl() {}
 
 	public User getUserById(int id) {
 		Session session = ConnectionUtil.getSessionFactory().openSession();
@@ -39,25 +38,27 @@ public class UserDaoImpl implements UserDao {
 		return usr;
 	}
 
-	public void saveUser(User usr) {
+	public Serializable saveUser(User usr) {
 		Session session = ConnectionUtil.getSessionFactory().openSession();
 		Transaction tx = null;
 		Serializable s = null;
 
 		try {
 			tx = session.beginTransaction();
-			System.out.println(tx);
-			session.save(usr);
-			System.out.println("User: " + usr);
+			s = session.save(usr);
+			System.out.println(usr);
 			tx.commit();
+			return s;
 		} catch (Exception ex) {
 			if (tx != null) {
 				tx.rollback();
 			}
+			return null;
+		} finally {
 			session.close();
 		}
 	}
-	
+
 	public void updateUser(User usr) {
 		Session session = ConnectionUtil.getSessionFactory().openSession();
 		Transaction tx = null;
@@ -75,7 +76,7 @@ public class UserDaoImpl implements UserDao {
 			session.close();
 		}
 	}
-	
+
 	public void deleteUser(User usr) {
 		Session session = ConnectionUtil.getSessionFactory().openSession();
 		Transaction tx = null;

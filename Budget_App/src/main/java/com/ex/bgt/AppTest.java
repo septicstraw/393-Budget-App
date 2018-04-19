@@ -59,7 +59,7 @@ public class AppTest {
 	public void testAddCategory() {
 		Category ctgry = new Category("rent", 1000, 1);
 		CategoryDao ctgryDao = new CategoryDaoImpl();
-		int savedId = (int) ctgryDao.saveCategory(ctgry);
+		int savedId = (Integer) ctgryDao.saveCategory(ctgry);
 		
 		System.out.println("ID IS " + savedId + " AND NAME IS " + ctgry.getName());
 		

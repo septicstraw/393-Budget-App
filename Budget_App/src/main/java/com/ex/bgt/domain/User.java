@@ -51,19 +51,15 @@ public class User
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		categoryList = new ArrayList<Category>();
-		transactionList = new ArrayList<BgtTransaction>();
-		income = new Income();
 	}
+	
 	public User(String email, int password, String firstName, String lastName) {
 		this.email = email;
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
-		categoryList = new ArrayList<Category>();
-		transactionList = new ArrayList<BgtTransaction>();
-		income = new Income();
 	}
+	
 	public User() {}
 	
 	public int getID() {
@@ -72,6 +68,14 @@ public class User
 	
 	public void setID(int id) {
 		this.id = id;
+	}
+	
+	public String getEmail() {
+		return email;
+	}
+	
+	public void setEmail(String email) {
+		this.email = email;
 	}
 	
 	public int getPass() {

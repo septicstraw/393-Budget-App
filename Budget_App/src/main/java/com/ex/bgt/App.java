@@ -18,11 +18,11 @@ public class App
 {
     public static void main( String[] args )
     {
-        //User usr = new User("nverrilli@gmail.com", 88204, "Nick", "Verrilli");
-    	User usr;
+        User usr = new User("nverrilli@gmail.com", 88204, "Nick", "Verrilli");
+    	//User usr;
         UserDao usrDao = new UserDaoImpl();
-        //int id = (int) usrDao.saveUser(usr);
-        usr = usrDao.getUserById(1);
+        int usrid = (Integer) usrDao.saveUser(usr);
+        usr = usrDao.getUserById(usrid);
         //usr = usrDao.getUserByEmail("nverrilli@gmail.com");
         
         /*List<Category> cats = usr.getCategoryList();
@@ -30,17 +30,18 @@ public class App
         {
         	System.out.println(c.getName());
         }*/
-        //System.out.println(usr.getEmail());
+        System.out.println(usr.getEmail());
     	
     	Category cat = new Category();
     	cat.setCurrentFunds(100);
     	cat.setInitialFunds(100);
     	cat.setName("Electronics");
     	cat.setPriority(1);
+    	cat.setUser(usr);
     	
     	CategoryDao catDao = new CategoryDaoImpl();
-    	int id = (Integer) catDao.saveCategory(cat);
-    	cat = catDao.getCategoryById(id);
+    	int catid = (Integer) catDao.saveCategory(cat);
+    	cat = catDao.getCategoryById(catid);
     	System.out.println(cat.getName());
         
     }
