@@ -117,8 +117,16 @@ public class CategoryDisplayScene extends Application {
             public void handle(ActionEvent e) {
                 if (purchaseMode) {
                 	actiontarget.setPromptText("making purchase...");
+                	if (actiontarget.getText().matches("[0-9]+")) {
+                		double purchaseAmount = Integer.parseInt(actiontarget.getText());
+                		//BgtTransaction trans = new BgtTransaction(purchaseAmount, 
+                		selectedCategory.setCurrentFunds(selectedCategory.getCurrentFunds() - purchaseAmount);
+                	}
                 } else {
                 	actiontarget.setPromptText("making deposit...");
+                	int depositAmount = Integer.parseInt(actiontarget.getText());
+            		//BgtTransaction trans = new BgtTransaction()
+            		selectedCategory.setCurrentFunds(selectedCategory.getCurrentFunds() + depositAmount);
                 }
                 confirmBtn.setVisible(false);
                 actiontarget.setVisible(false);
