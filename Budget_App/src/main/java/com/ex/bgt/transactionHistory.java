@@ -59,26 +59,38 @@ public class transactionHistory extends Application
         
         User usr = new User("email@email.com", 111, "Paul", "Palumbo");
         Category cat = new Category(usr, "Pants", 1000, 4);
-        Category cat2 = new Category(usr, "Food", 500, 3);
-        Category subCat = new Category(usr, "Fun", 500, 2);
-        SubCategory subCat1 = new SubCategory("Movies", 100, 10, subCat);
-        SubCategory subCat2 = new SubCategory("Bowling", 100, 11, subCat);
-    	//List<BgtTransaction> tempList = new ArrayList<BgtTransaction>();
+        Category cat1 = new Category(usr, "Food", 500, 3);
+        Category cat2 = new Category(usr, "Fun", 500, 2);
+        SubCategory subCat1 = new SubCategory("Movies", 100, 10, cat2);
+        SubCategory subCat2 = new SubCategory("Bowling", 100, 11, cat2);
+        List<Category> catList = new ArrayList<Category>();
+        List<SubCategory> subCatList = new ArrayList<SubCategory>();
+        subCatList.add(subCat1);
+        subCatList.add(subCat2);
+        catList.add(cat);
+        catList.add(cat2);
+        usr.setCategoryList(catList);
+        
+        
+    	List<BgtTransaction> tempList = new ArrayList<BgtTransaction>();
     	
     	
     	UserMethods userDo = new UserMethods();
     	CategoryMethods catDo = new CategoryMethods();
     	
     	
+    	Timestamp testStamp = new Timestamp(System.currentTimeMillis());
     	
+    	tempList.add(new BgtTransaction(100d, testStamp, "For more pants", cat, usr, 1000));
+    	tempList.add(new BgtTransaction(-150.0, testStamp, "Less Pants", cat, usr, 100));
+    	tempList.add(new BgtTransaction(200.0, testStamp, "Some Pants", cat, usr, 100));
+    	tempList.add(new BgtTransaction(300.0, testStamp, "Test Pants", cat, usr, 100));
+    	tempList.add(new BgtTransaction(-100.0, testStamp, "Pants Pants", cat, usr, 100));
+    	tempList.add(new BgtTransaction(-356.0, testStamp, "Panty Pants", cat, usr, 100));
+    	tempList.add(new BgtTransaction(100.0, testStamp, "Plants", cat, usr, 100));
     	
-    	/*tempList.add(new BgtTransaction(100, testStamp, "For more pants", cat, usr));
-    	tempList.add(new BgtTransaction(-150, testStamp, "Less Pants", cat, usr));
-    	tempList.add(new BgtTransaction(200, testStamp, "Some Pants", cat, usr));
-    	tempList.add(new BgtTransaction(300, testStamp, "Test Pants", cat, usr));
-    	tempList.add(new BgtTransaction(-100, testStamp, "Pants Pants", cat, usr));
-    	tempList.add(new BgtTransaction(-356, testStamp, "Panty Pants", cat, usr));
-    	tempList.add(new BgtTransaction(100, testStamp, "Plants", cat, usr));*/
+    	usr.setTransactionList(tempList);
+    	
     	int i = 1;
     	String currentSay = new String();
     	
@@ -114,10 +126,9 @@ public class transactionHistory extends Application
     	userDo.changeMoney(cat2, -102, "Bought Food", usr);
     	userDo.changeMoney(cat2, -203, "Too Much Food", usr);
     	userDo.changeMoney(cat2, 100, "Sold Couch", usr);
-    	userDo.changeMoneySubCategory(subCat, subCat1, -20, "Infinity War", usr);
-    	userDo.changeMoneySubCategory(subCat, subCat1, -20, "Infinity War Again", usr);
-    	userDo.changeMoneySubCategory(subCat, subCat2, -20, "I love Bowling", usr);
-    	List<BgtTransaction> tempList = usr.getTransactionList();
+    	userDo.changeMoneySubCategory(cat2, subCat1, -20, "Infinity War", usr);
+    	userDo.changeMoneySubCategory(cat2, subCat1, -20, "Infinity War Again", usr);
+    	userDo.changeMoneySubCategory(cat2, subCat2, -20, "I love Bowling", usr);
     	
     	for(BgtTransaction transact: tempList)
     	{

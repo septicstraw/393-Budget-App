@@ -51,6 +51,7 @@ public class User
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.transactionList = new ArrayList<BgtTransaction>();
 	}
 	
 	public User(String email, int password, String firstName, String lastName) {
@@ -58,9 +59,12 @@ public class User
 		this.password = password;
 		this.firstName = firstName;
 		this.lastName = lastName;
+		this.transactionList = new ArrayList<BgtTransaction>();
 	}
 	
-	public User() {}
+	public User() {
+		this.transactionList = new ArrayList<BgtTransaction>();
+	}
 	
 	public int getID() {
 		return id;
