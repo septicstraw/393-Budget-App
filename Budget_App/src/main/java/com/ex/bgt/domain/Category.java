@@ -1,4 +1,5 @@
 package com.ex.bgt.domain;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
@@ -49,6 +50,7 @@ public class Category
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
+		subcategories = new ArrayList<SubCategory>();
 	}
 	public Category(int id, String name, double initialFunds, int priority) {
 		this.id = id;
@@ -56,6 +58,7 @@ public class Category
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
+		subcategories = new ArrayList<SubCategory>();
 	}
 	public Category(User user, String name, double initialFunds, int priority) {
 		this.user = user;
@@ -63,6 +66,7 @@ public class Category
 		this.initialFunds = initialFunds;
 		this.currentFunds = initialFunds;
 		this.priority = priority;
+		subcategories = new ArrayList<SubCategory>();
 		List<Category> updateList = user.getCategoryList();
 		updateList.add(this);
 		user.setCategoryList(updateList);

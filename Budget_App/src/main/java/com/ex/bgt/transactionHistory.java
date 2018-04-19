@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.bgt.domain.Category;
+import com.ex.bgt.domain.SubCategory;
 import com.ex.bgt.domain.User;
 import com.ex.dao.UserDao;
 import com.ex.impl.UserDaoImpl;
@@ -58,21 +59,18 @@ public class transactionHistory extends Application
         
         User usr = new User(1, "email@email.com", 111, "Paul", "Palumbo");
         Category cat = new Category(usr, "Pants", 1000, 4);
-        Category cat2 = new Category(usr, "Food", 500, 4);
-        Timestamp testStamp = new Timestamp(100);
+        Category cat2 = new Category(usr, "Food", 500, 3);
+        Category subCat = new Category(usr, "Fun", 500, 2);
+        SubCategory subCat1 = new SubCategory("Movies", 100, 10, subCat);
+        SubCategory subCat2 = new SubCategory("Bowling", 100, 11, subCat);
     	//List<BgtTransaction> tempList = new ArrayList<BgtTransaction>();
     	
     	
     	UserMethods userDo = new UserMethods();
     	CategoryMethods catDo = new CategoryMethods();
     	
-    	userDo.changeMoney(cat, -150, "For Pants", usr);
-    	userDo.changeMoney(cat, -250, "More Pants", usr);
-    	userDo.changeMoney(cat, 100, "Sold Pants", usr);
-    	userDo.changeMoney(cat2, -102, "Bought Food", usr);
-    	userDo.changeMoney(cat2, -203, "Too Much Food", usr);
-    	userDo.changeMoney(cat2, 100, "Sold Couch", usr);
-    	List<BgtTransaction> tempList = usr.getTransactionList();
+    	
+    	
     	
     	/*tempList.add(new BgtTransaction(100, testStamp, "For more pants", cat, usr));
     	tempList.add(new BgtTransaction(-150, testStamp, "Less Pants", cat, usr));
@@ -82,6 +80,45 @@ public class transactionHistory extends Application
     	tempList.add(new BgtTransaction(-356, testStamp, "Panty Pants", cat, usr));
     	tempList.add(new BgtTransaction(100, testStamp, "Plants", cat, usr));*/
     	int i = 1;
+    	String currentSay = new String();
+    	
+    	for(Category cats: usr.getCategoryList())
+    	{
+    		if(cats.getSubcategories().size() <= 0)
+    		{
+    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + 
+    								   "Remaining Funds: " + cats.getCurrentFunds());
+    			i++;
+    		}
+    		else
+    		{
+    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + "Remaining Funds: " + cats.getCurrentFunds() + "\n");
+    			for(SubCategory subcats: cats.getSubcategories())
+    			{
+    				currentSay = currentSay + ("SubCategory: " + subcats.getName() + " --- " + "Remaining Funds: " + subcats.getCurrentFunds() + "\n");
+    			}
+    			i += cats.getSubcategories().size() + 1;
+    		}
+    		Label userName = new Label(currentSay);
+    		
+            grid.add(userName, 0, i);
+            
+            currentSay = "";
+    	}
+    	
+    	i+= 2;
+    	
+    	userDo.changeMoney(cat, -150, "For Pants", usr);
+    	userDo.changeMoney(cat, -250, "More Pants", usr);
+    	userDo.changeMoney(cat, 100, "Sold Pants", usr);
+    	userDo.changeMoney(cat2, -102, "Bought Food", usr);
+    	userDo.changeMoney(cat2, -203, "Too Much Food", usr);
+    	userDo.changeMoney(cat2, 100, "Sold Couch", usr);
+    	userDo.changeMoneySubCategory(subCat, subCat1, -20, "Infinity War", usr);
+    	userDo.changeMoneySubCategory(subCat, subCat1, -20, "Infinity War Again", usr);
+    	userDo.changeMoneySubCategory(subCat, subCat2, -20, "I love Bowling", usr);
+    	List<BgtTransaction> tempList = usr.getTransactionList();
+    	
     	for(BgtTransaction transact: tempList)
     	{
     		Label userName = new Label("Date: " + transact.getTransactionDate() + " --- "
@@ -90,6 +127,32 @@ public class transactionHistory extends Application
     				+ "Notes: " + transact.getTransactionNotes());
             grid.add(userName, 0, i);
             i++;
+    	}
+    	
+    	i += 2;
+    	
+    	for(Category cats: usr.getCategoryList())
+    	{
+    		if(cats.getSubcategories().size() <= 0)
+    		{
+    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + 
+    								   "Remaining Funds: " + cats.getCurrentFunds());
+    			i++;
+    		}
+    		else
+    		{
+    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + "Remaining Funds: " + cats.getCurrentFunds() + "\n");
+    			for(SubCategory subcats: cats.getSubcategories())
+    			{
+    				currentSay = currentSay + ("SubCategory: " + subcats.getName() + " --- " + "Remaining Funds: " + subcats.getCurrentFunds() + "\n");
+    			}
+    			i += cats.getSubcategories().size() + 1;
+    		}
+    		Label userName = new Label(currentSay);
+    		
+            grid.add(userName, 0, i);
+            
+            currentSay = "";
     	}
     	
     	
