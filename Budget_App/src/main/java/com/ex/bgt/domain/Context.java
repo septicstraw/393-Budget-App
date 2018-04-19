@@ -8,6 +8,7 @@ public class Context {
     }
 
     private User user = new User();
+    private Category category = new Category();
 
     public User currentUser() {
         return user;
@@ -15,5 +16,13 @@ public class Context {
     
     public void setCurrentUser(User user) {
     	this.user = user;
+    }
+    
+    public Category getCurrentCategory() {
+    	return category;
+    }
+    
+    public void setCurrentCategory(Category category) {
+    	this.category = category;
     }
 }
