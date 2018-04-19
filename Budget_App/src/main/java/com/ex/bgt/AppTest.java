@@ -20,11 +20,11 @@ public class AppTest {
 	@Test
 	public void testAddUser() {
 		
-		User usr = new User("test1@gmail.com", 12345, "Eric", "Feinstein");
+		User usr = new User("test_demo@gmail.com", 12345, "Eric", "Feinstein");
         UserDao usrDao = new UserDaoImpl();
         usrDao.saveUser(usr);
         
-        User usrResult = usrDao.getUserByEmail("test1@gmail.com");
+        User usrResult = usrDao.getUserByEmail("test_demo@gmail.com");
         
         assertEquals(usr.getID(), usrResult.getID());
 	}

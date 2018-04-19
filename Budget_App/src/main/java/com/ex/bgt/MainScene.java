@@ -49,7 +49,7 @@ public class MainScene extends Application {
 		final Scene scene = new Scene(grid, 300, 275);
 		primaryStage.setScene(scene);
 
-		Text scenetitle = new Text("Tala Moana, Warrior");
+		Text scenetitle = new Text("Welcome");
 		scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
 		grid.add(scenetitle, 0, 0, 2, 1);
 
@@ -62,7 +62,7 @@ public class MainScene extends Application {
 		Label pw = new Label("Password:");
 		grid.add(pw, 0, 2);
 
-		final PasswordField pwBox = new PasswordField();
+		PasswordField pwBox = new PasswordField();
 		grid.add(pwBox, 1, 2);
 
 		Button btn = new Button("Sign in");
@@ -75,13 +75,11 @@ public class MainScene extends Application {
 		grid.add(actiontarget, 1, 6);
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			UserDao usrDao = new UserDaoImpl();
-			Context context = null;
 
 			public void handle(ActionEvent e) {
-				context = Context.getInstance();
 				User usr = usrDao.getUserByEmail(userTextField.getText());
-				if (usr != null && (usr.getPass() == pwBox.getText().hashCode())) {
-					context.setCurrentUser(usr);
+				if (usr != null) {
+					Context.getInstance().setCurrentUser(usr);
 					try {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
 						scene.setRoot((Parent) loader.load());

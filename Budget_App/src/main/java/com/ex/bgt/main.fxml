@@ -15,6 +15,8 @@
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
+                     	<Text layoutX="120.0" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="1.0" text="Create a new Category" />
+                     	
                         <Text layoutX="120.0" layoutY="77.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Name" wrappingWidth="153.5078125" />
                         <Text layoutX="120.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Funds" />
                         <Text layoutX="120.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Funds" />
