@@ -19,11 +19,12 @@
                         <Text layoutX="120.0" layoutY="185.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Initial Funds" />
                         <Text layoutX="120.0" layoutY="293.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Current Funds" />
                         <Text layoutX="120.0" layoutY="410.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Priority" />
-						<TextField fx:id="name" layoutX="120.0" layoutY="211.0" prefHeight="26.0" prefWidth="237.0" />
-	                    <TextField fx:id="initialFunds" layoutX="120.0" layoutY="101.0" prefHeight="26.0" prefWidth="237.0" />
+						<TextField fx:id="name" layoutX="120.0" layoutY="110.0" prefHeight="26.0" prefWidth="237.0" />
+	                    <TextField fx:id="initialFunds" layoutX="120.0" layoutY="218.0" prefHeight="26.0" prefWidth="237.0" />
 	                    <TextField fx:id="currentFunds" layoutX="120.0" layoutY="329.0" prefHeight="26.0" prefWidth="237.0" />
 	                    <TextField fx:id="priority" layoutX="120.0" layoutY="436.0" prefHeight="26.0" prefWidth="237.0" />
 	                    <Button layoutX="407.0" layoutY="482.0" mnemonicParsing="false" onAction="#saveCategory" text="Submit" />
+	                    <Button fx:id="transactionBtn" layoutX="374.0" layoutY="630.0" mnemonicParsing="false" text="Transaction Page" onAction="#transactionRedirect"/>
                      </children>
                   </AnchorPane>
             </content>

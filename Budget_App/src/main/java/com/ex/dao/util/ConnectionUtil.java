@@ -6,10 +6,10 @@ import org.hibernate.cfg.Configuration;
 
 public class ConnectionUtil {
 	@SuppressWarnings("deprecation")
-	private static SessionFactory sessionFactory = new Configuration()
-			.configure("com/ex/resources/hibernate.cfg.xml").buildSessionFactory();
+	private static SessionFactory sessionFactory = new Configuration().configure("com/ex/resources/hibernate.cfg.xml")
+			.buildSessionFactory();
 
-	public static SessionFactory getSessionFactory() {
-		return sessionFactory;
+	public static Session getSession() {
+		return sessionFactory.openSession();
 	}
 }

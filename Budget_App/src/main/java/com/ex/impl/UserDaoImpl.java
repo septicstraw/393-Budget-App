@@ -17,36 +17,37 @@ public class UserDaoImpl implements UserDao {
 	// public UserDaoImpl() {}
 
 	public User getUserById(int id) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		User usr = (User) session.load(User.class, id);
-
+		session.close();
 		return usr;
 	}
 
 	public List<User> getAllUsers() {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		List<User> users = session.createCriteria(User.class).list();
 		session.close();
 		return users;
 	}
 
 	public User getUserByEmail(String email) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Criteria c = session.createCriteria(User.class);
 		c.add(Restrictions.eq("email", email));
 		User usr = (User) c.uniqueResult();
+		
 		return usr;
 	}
 
 	public Serializable saveUser(User usr) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		Serializable s = null;
 
 		try {
 			tx = session.beginTransaction();
 			s = session.save(usr);
-			System.out.println(usr);
+			
 			tx.commit();
 			return s;
 		} catch (Exception ex) {
@@ -60,7 +61,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void updateUser(User usr) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 
 		try {
@@ -78,7 +79,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	public void deleteUser(User usr) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		try {
 			tx = session.beginTransaction();

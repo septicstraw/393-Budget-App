@@ -1,5 +1,6 @@
 package com.ex.bgt.domain;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -29,7 +30,7 @@ public class Income {
 	@Column(name = "payeriod")
 	private int payPeriod; //Number of days of pay period
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "userid")
 	private User user;
 	

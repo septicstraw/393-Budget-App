@@ -12,14 +12,14 @@ import com.ex.dao.util.ConnectionUtil;
 public class IncomeDaoImpl implements IncomeDao {
 
 	public Income getIncomeById(int id) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Income inc = (Income) session.load(Income.class, id);
 
 		return inc;
 	}
 
 	public Serializable saveIncome(Income inc) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		Serializable s = null;
 
@@ -40,7 +40,7 @@ public class IncomeDaoImpl implements IncomeDao {
 	}
 
 	public void deleteIncome(Income inc) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		
 		try {

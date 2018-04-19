@@ -15,7 +15,7 @@ import com.ex.dao.util.ConnectionUtil;
 public class SubCategoryDaoImpl implements SubCategoryDao {
 
 	public SubCategory getSubCategoryById(int id) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		SubCategory cat = (SubCategory) session.load(SubCategory.class, id);
 		session.close();
 
@@ -23,7 +23,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	}
 	
 	public SubCategory getSubCategoryByName(String name) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Criteria c = session.createCriteria(SubCategory.class);
 		c.add(Restrictions.eq("name", name));
 		SubCategory cat = (SubCategory) c.uniqueResult();
@@ -32,7 +32,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	}
 
 	public List<SubCategory> getAllSubCategories() {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		List<SubCategory> cats = session.createCriteria(SubCategory.class).list();
 		session.close();
 
@@ -40,7 +40,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	}
 
 	public Serializable saveSubCategory(SubCategory subcat) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		Serializable s = null;
 
@@ -61,7 +61,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	}
 	
 	public void updateSubCategory(SubCategory subcat) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 
 		try {
@@ -79,7 +79,7 @@ public class SubCategoryDaoImpl implements SubCategoryDao {
 	}
 
 	public void deleteSubCategory(SubCategory subcat) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		
 		try {

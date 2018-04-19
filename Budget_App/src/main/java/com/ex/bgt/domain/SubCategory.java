@@ -2,6 +2,7 @@ package com.ex.bgt.domain;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -34,7 +35,7 @@ public class SubCategory
 	@Column(name = "priority")
 	private int priority;
 	
-	@ManyToOne
+	@ManyToOne(cascade=CascadeType.ALL)
 	@JoinColumn(name = "category_id")
 	private Category category;
 	

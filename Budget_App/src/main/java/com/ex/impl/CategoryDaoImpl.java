@@ -15,14 +15,14 @@ import com.ex.dao.util.ConnectionUtil;
 public class CategoryDaoImpl implements CategoryDao {
 
 	public Category getCategoryById(int id) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Category cat = (Category) session.load(Category.class, id);
 		
 		return cat;
 	}
 	
 	public Category getCategoryByName(String name) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Criteria c = session.createCriteria(Category.class);
 		c.add(Restrictions.eq("name", name));
 		Category cat = (Category) c.uniqueResult();
@@ -31,7 +31,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	public List<Category> getAllCategories() {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		List<Category> cats = session.createCriteria(Category.class).list();
 		session.close();
 
@@ -39,17 +39,17 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	public Serializable saveCategory(Category category) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		Serializable s = null;
 
 		try {
 			tx = session.beginTransaction();
 			s = session.save(category);
-			System.out.println(category);
 			tx.commit();
 			return s;
 		} catch (Exception ex) {
+			System.out.println(ex);
 			if (tx != null) {
 				tx.rollback();
 			}
@@ -60,7 +60,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 	
 	public void updateCategory(Category category) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 
 		try {
@@ -78,7 +78,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	}
 
 	public void deleteCategory(Category category) {
-		Session session = ConnectionUtil.getSessionFactory().openSession();
+		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		
 		try {

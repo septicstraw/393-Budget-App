@@ -2,6 +2,7 @@ package com.ex.bgt.domain;
 
 import java.sql.Timestamp;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -116,5 +117,14 @@ public class BgtTransaction
 	public Category getTransactionCategory() {
 		return transactionCategory;
 	}
+	
+	public User getTransactionUser() {
+		return user;
+	}
+	
+	public void setTransactionUser(User user) {
+		this.user = user;
+	}
+	
 	
 }

@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.ex.bgt.domain.Context;
 import com.ex.bgt.domain.User;
 import com.ex.dao.UserDao;
 import com.ex.impl.UserDaoImpl;
@@ -61,7 +62,7 @@ public class MainScene extends Application {
 		Label pw = new Label("Password:");
 		grid.add(pw, 0, 2);
 
-		PasswordField pwBox = new PasswordField();
+		final PasswordField pwBox = new PasswordField();
 		grid.add(pwBox, 1, 2);
 
 		Button btn = new Button("Sign in");
@@ -74,10 +75,13 @@ public class MainScene extends Application {
 		grid.add(actiontarget, 1, 6);
 		btn.setOnAction(new EventHandler<ActionEvent>() {
 			UserDao usrDao = new UserDaoImpl();
+			Context context = null;
 
 			public void handle(ActionEvent e) {
+				context = Context.getInstance();
 				User usr = usrDao.getUserByEmail(userTextField.getText());
-				if (usr != null) {
+				if (usr != null && (usr.getPass() == pwBox.getText().hashCode())) {
+					context.setCurrentUser(usr);
 					try {
 						FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
 						scene.setRoot((Parent) loader.load());
