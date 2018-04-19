@@ -68,6 +68,7 @@ public class UserMethods
 		for(Category category: catList)
 		{
 			rollingTotal += catMeth.resetMoney(thisGuy, category);
+			rollingTotal += catMeth.resetSubcategoryFunds(thisGuy, category);
 			catDao.saveCategory(category);
 		}
 		return rollingTotal;

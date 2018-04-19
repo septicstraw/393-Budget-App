@@ -50,7 +50,7 @@ public class transactionHistory extends Application
         grid.setVgap(10);
         grid.setPadding(new Insets(25, 25, 25, 25));
 
-        Scene scene = new Scene(grid, 800, 800);
+        Scene scene = new Scene(grid, 1000, 1000);
         primaryStage.setScene(scene);
 
         Text scenetitle = new Text("Transaction History");
@@ -155,7 +155,38 @@ public class transactionHistory extends Application
             currentSay = "";
     	}
     	
+    	i+= 2;
     	
+    	double rollover = userDo.rollover(usr);
+    	
+    	Label rolloverPrint = new Label("Rollover:" + rollover);
+    	 grid.add(rolloverPrint, 0, i);
+    	
+    	i+= 2;
+    	
+    	for(Category cats: usr.getCategoryList())
+    	{
+    		if(cats.getSubcategories().size() <= 0)
+    		{
+    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + 
+    								   "Remaining Funds: " + cats.getCurrentFunds());
+    			i++;
+    		}
+    		else
+    		{
+    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + "Remaining Funds: " + cats.getCurrentFunds() + "\n");
+    			for(SubCategory subcats: cats.getSubcategories())
+    			{
+    				currentSay = currentSay + ("SubCategory: " + subcats.getName() + " --- " + "Remaining Funds: " + subcats.getCurrentFunds() + "\n");
+    			}
+    			i += cats.getSubcategories().size() + 1;
+    		}
+    		Label userName = new Label(currentSay);
+    		
+            grid.add(userName, 0, i);
+            
+            currentSay = "";
+    	}
         
 
         /*final Text actiontarget = new Text();
