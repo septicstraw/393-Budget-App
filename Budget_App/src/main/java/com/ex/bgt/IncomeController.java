@@ -55,7 +55,7 @@ public class IncomeController {
     	Stage stage;
     	try {
     		System.out.println("here\n");
-    		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
+    		root = FXMLLoader.load(getClass().getResource("transactionsHistory.fxml"));
     		Scene scene = new Scene(root);
     		stage = (Stage) redirectBtn.getScene().getWindow();
     		stage.setScene(scene);

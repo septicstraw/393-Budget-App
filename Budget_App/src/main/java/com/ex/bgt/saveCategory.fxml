@@ -11,7 +11,7 @@
    <children>
       <TabPane prefHeight="717.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
-          <Tab text="Categories">
+          <Tab text="Create New Category">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>

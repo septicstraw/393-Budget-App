@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.bgt.domain.Category;
+import com.ex.bgt.domain.Context;
 import com.ex.bgt.domain.SubCategory;
 import com.ex.bgt.domain.User;
 import com.ex.dao.UserDao;
@@ -15,6 +16,7 @@ import com.ex.impl.UserDaoImpl;
 import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
+import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
@@ -33,187 +35,70 @@ import javafx.stage.Stage;
 
 public class transactionHistory extends Application 
 {
+	@FXML
+	private GridPane txGrid;
 
 	public static void main(String[] args) 
 	{
         launch(args);
     }
+	
     
-    @Override
-    public void start(Stage primaryStage) 
+    @FXML
+    public void initialize() 
     {
-        primaryStage.setTitle("Budget App");
-       
-        GridPane grid = new GridPane();
-        grid.setAlignment(Pos.CENTER);
-        grid.setHgap(10);
-        grid.setVgap(10);
-        grid.setPadding(new Insets(25, 25, 25, 25));
-
-        Scene scene = new Scene(grid, 1000, 1000);
-        primaryStage.setScene(scene);
+    	System.out.println("initialize");
+        txGrid = new GridPane();
+        txGrid.setAlignment(Pos.CENTER);
+        txGrid.setHgap(10);
+        txGrid.setVgap(10);
+        txGrid.setPadding(new Insets(25, 25, 25, 25));
 
         Text scenetitle = new Text("Transaction History");
         scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-        grid.add(scenetitle, 0, 0, 2, 1);
-        
-        User usr = new User("email@email.com", 111, "Paul", "Palumbo");
-        Category cat = new Category(usr, "Pants", 1000, 4);
-        Category cat1 = new Category(usr, "Food", 500, 3);
-        Category cat2 = new Category(usr, "Fun", 500, 2);
-        SubCategory subCat1 = new SubCategory("Movies", 100, 10, cat2);
-        SubCategory subCat2 = new SubCategory("Bowling", 100, 11, cat2);
-        List<Category> catList = new ArrayList<Category>();
-        List<SubCategory> subCatList = new ArrayList<SubCategory>();
-        subCatList.add(subCat1);
-        subCatList.add(subCat2);
-        catList.add(cat);
-        catList.add(cat2);
-        usr.setCategoryList(catList);
+        txGrid.add(scenetitle, 0, 0, 2, 1);
+        Scene scene = new Scene(txGrid, 1000, 1000);
         
         
-    	List<BgtTransaction> tempList = new ArrayList<BgtTransaction>();
+    	List<BgtTransaction> transList = Context.getInstance().currentUser().getTransactionList();
     	
-    	
-    	UserMethods userDo = new UserMethods();
-    	CategoryMethods catDo = new CategoryMethods();
-    	
-    	
-    	Timestamp testStamp = new Timestamp(System.currentTimeMillis());
-    	
-    	tempList.add(new BgtTransaction(100d, testStamp, "For more pants", cat, usr, 1000));
-    	tempList.add(new BgtTransaction(-150.0, testStamp, "Less Pants", cat, usr, 100));
-    	tempList.add(new BgtTransaction(200.0, testStamp, "Some Pants", cat, usr, 100));
-    	tempList.add(new BgtTransaction(300.0, testStamp, "Test Pants", cat, usr, 100));
-    	tempList.add(new BgtTransaction(-100.0, testStamp, "Pants Pants", cat, usr, 100));
-    	tempList.add(new BgtTransaction(-356.0, testStamp, "Panty Pants", cat, usr, 100));
-    	tempList.add(new BgtTransaction(100.0, testStamp, "Plants", cat, usr, 100));
-    	
-    	usr.setTransactionList(tempList);
-    	
-    	int i = 1;
-    	String currentSay = new String();
-    	
-    	for(Category cats: usr.getCategoryList())
+    	for(BgtTransaction transact: transList)
     	{
-    		if(cats.getSubcategories().size() <= 0)
-    		{
-    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + 
-    								   "Remaining Funds: " + cats.getCurrentFunds());
-    			i++;
-    		}
-    		else
-    		{
-    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + "Remaining Funds: " + cats.getCurrentFunds() + "\n");
-    			for(SubCategory subcats: cats.getSubcategories())
-    			{
-    				currentSay = currentSay + ("SubCategory: " + subcats.getName() + " --- " + "Remaining Funds: " + subcats.getCurrentFunds() + "\n");
-    			}
-    			i += cats.getSubcategories().size() + 1;
-    		}
-    		Label userName = new Label(currentSay);
-    		
-            grid.add(userName, 0, i);
-            
-            currentSay = "";
-    	}
-    	
-    	i+= 2;
-    	
-    	userDo.changeMoney(cat, -150, "For Pants", usr);
-    	userDo.changeMoney(cat, -250, "More Pants", usr);
-    	userDo.changeMoney(cat, 100, "Sold Pants", usr);
-    	userDo.changeMoney(cat2, -102, "Bought Food", usr);
-    	userDo.changeMoney(cat2, -203, "Too Much Food", usr);
-    	userDo.changeMoney(cat2, 100, "Sold Couch", usr);
-    	userDo.changeMoneySubCategory(cat2, subCat1, -20, "Infinity War", usr);
-    	userDo.changeMoneySubCategory(cat2, subCat1, -20, "Infinity War Again", usr);
-    	userDo.changeMoneySubCategory(cat2, subCat2, -20, "I love Bowling", usr);
-    	
-    	for(BgtTransaction transact: tempList)
-    	{
-    		Label userName = new Label("Date: " + transact.getTransactionDate() + " --- "
+    		Label info = new Label("Date: " + transact.getTransactionDate() + " --- "
     				+ "Category: " + transact.getTransactionCategory().getName() + " --- "
     				+ "Amount: " + transact.getTransactionAmount() + " --- "
     				+ "Notes: " + transact.getTransactionNotes());
-            grid.add(userName, 0, i);
-            i++;
+    		txGrid.add(info, 0, 0);
     	}
-    	
-    	i += 2;
-    	
-    	for(Category cats: usr.getCategoryList())
-    	{
-    		if(cats.getSubcategories().size() <= 0)
-    		{
-    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + 
-    								   "Remaining Funds: " + cats.getCurrentFunds());
-    			i++;
-    		}
-    		else
-    		{
-    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + "Remaining Funds: " + cats.getCurrentFunds() + "\n");
-    			for(SubCategory subcats: cats.getSubcategories())
-    			{
-    				currentSay = currentSay + ("SubCategory: " + subcats.getName() + " --- " + "Remaining Funds: " + subcats.getCurrentFunds() + "\n");
-    			}
-    			i += cats.getSubcategories().size() + 1;
-    		}
-    		Label userName = new Label(currentSay);
-    		
-            grid.add(userName, 0, i);
-            
-            currentSay = "";
-    	}
-    	
-    	i+= 2;
-    	
-    	double rollover = userDo.rollover(usr);
-    	
-    	Label rolloverPrint = new Label("Rollover: " + rollover);
-    	 grid.add(rolloverPrint, 0, i);
-    	
-    	i+= 2;
-    	
-    	for(Category cats: usr.getCategoryList())
-    	{
-    		if(cats.getSubcategories().size() <= 0)
-    		{
-    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + 
-    								   "Remaining Funds: " + cats.getCurrentFunds());
-    			i++;
-    		}
-    		else
-    		{
-    			currentSay = currentSay + ("Category: " + cats.getName() + " --- " + "Remaining Funds: " + cats.getCurrentFunds() + "\n");
-    			for(SubCategory subcats: cats.getSubcategories())
-    			{
-    				currentSay = currentSay + ("SubCategory: " + subcats.getName() + " --- " + "Remaining Funds: " + subcats.getCurrentFunds() + "\n");
-    			}
-    			i += cats.getSubcategories().size() + 1;
-    		}
-    		Label userName = new Label(currentSay);
-    		
-            grid.add(userName, 0, i);
-            
-            currentSay = "";
-    	}
-        
-
-        /*final Text actiontarget = new Text();
-        grid.add(actiontarget, 1, 6);      
-        btn.setOnAction(new EventHandler<ActionEvent>() 
-        {
-        	 
-            @Override
-            public void handle(ActionEvent e) {
-                actiontarget.setFill(Color.FIREBRICK);
-                actiontarget.setText("Sign in button pressed");
-            }
-        });*/
-        
-        primaryStage.show();
     }
+
+
+	@Override
+	public void start(Stage primaryStage) throws Exception {
+		txGrid = new GridPane();
+		txGrid.setAlignment(Pos.CENTER);
+	        txGrid.setHgap(10);
+	        txGrid.setVgap(10);
+	        txGrid.setPadding(new Insets(25, 25, 25, 25));
+	        System.out.println("start");
+
+	        Text scenetitle = new Text("Transaction History");
+	        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+	        txGrid.add(scenetitle, 0, 0, 2, 1);
+	        Scene scene = new Scene(txGrid, 1000, 1000);
+	        
+	    	List<BgtTransaction> transList = Context.getInstance().currentUser().getTransactionList();
+	    	
+	    	for(BgtTransaction transact: transList)
+	    	{
+	    		Label info = new Label("Date: " + transact.getTransactionDate() + " --- "
+	    				+ "Category: " + transact.getTransactionCategory().getName() + " --- "
+	    				+ "Amount: " + transact.getTransactionAmount() + " --- "
+	    				+ "Notes: " + transact.getTransactionNotes());
+	    		System.out.println(info.toString());
+	    		txGrid.add(info, 0, 0);
+	    	}
+	}
     
     
 

@@ -35,6 +35,7 @@ public class UserDaoImpl implements UserDao {
 		Criteria c = session.createCriteria(User.class);
 		c.add(Restrictions.eq("email", email));
 		User usr = (User) c.uniqueResult();
+		//session.close();
 		
 		return usr;
 	}
