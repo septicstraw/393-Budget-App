@@ -59,5 +59,25 @@ public class SaveTransactionController {
     	//tx.setTransactionCategory(categories.);
     	
     }
+    
+    @FXML
+    void redirectCreateCat(ActionEvent event) {
+
+    }
+
+    @FXML
+    void redirectHome(ActionEvent event) {
+
+    }
+
+    @FXML
+    void redirectTx(ActionEvent event) {
+
+    }
+
+    @FXML
+    void redirectViewCat(ActionEvent event) {
+
+    }
 
 }

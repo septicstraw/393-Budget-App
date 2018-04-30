@@ -40,7 +40,7 @@ public class SaveCategoryController {
     private TextField priority;
     
     @FXML
-    private Button transactionBtn;
+    private Button redirectSaveTxBtn;
 
     @FXML
     void saveCategory(ActionEvent event) {
@@ -75,7 +75,7 @@ public class SaveCategoryController {
     		System.out.println("here\n");
     		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
     		Scene scene = new Scene(root);
-    		stage = (Stage) transactionBtn.getScene().getWindow();
+    		stage = (Stage) redirectSaveTxBtn.getScene().getWindow();
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {

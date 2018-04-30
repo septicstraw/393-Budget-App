@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import com.gluonhq.charm.glisten.control.BottomNavigationButton?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.MenuButton?>
@@ -19,9 +18,9 @@
       <TextField fx:id="amount" layoutX="91.0" layoutY="83.0" />
       <Text layoutX="91.0" layoutY="288.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Notes" />
       <TextArea fx:id="notes" layoutX="90.0" layoutY="291.0" prefHeight="168.0" prefWidth="453.0" />
-      <BottomNavigationButton layoutX="111.0" layoutY="521.0" onAction="#redirectHome" text="Home" />
-      <BottomNavigationButton layoutX="199.0" layoutY="521.0" onAction="#redirectTx" text="View Transactions" />
-      <BottomNavigationButton layoutX="349.0" layoutY="521.0" onAction="#redirectCreateCat" text="Make Categories" />
-      <BottomNavigationButton layoutX="489.0" layoutY="521.0" onAction="#redirectViewCat" text="View Categories" />
+      <Button layoutX="111.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectHome" text="Home" />
+      <Button layoutX="199.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectTx" text="View Transactions" />
+      <Button layoutX="349.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectCreateCat" text="Make Categories" />
+      <Button layoutX="489.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectViewCat" text="View Categories" />
    </children>
 </AnchorPane>
