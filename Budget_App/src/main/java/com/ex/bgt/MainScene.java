@@ -62,7 +62,7 @@ public class MainScene extends Application {
 		Label pw = new Label("Password:");
 		grid.add(pw, 0, 2);
 
-		PasswordField pwBox = new PasswordField();
+		final PasswordField pwBox = new PasswordField();
 		grid.add(pwBox, 1, 2);
 
 		Button btn = new Button("Sign in");
@@ -78,10 +78,10 @@ public class MainScene extends Application {
 
 			public void handle(ActionEvent e) {
 				User usr = usrDao.getUserByEmail(userTextField.getText());
-				if (usr != null) {
+				if (usr != null && (usr.getPass() == pwBox.getText().hashCode())) {
 					Context.getInstance().setCurrentUser(usr);
 					try {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("main.fxml"));
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("income.fxml"));
 						scene.setRoot((Parent) loader.load());
 					} catch (IOException ex) {
 						Logger.getLogger(MainScene.class.getName()).log(Level.SEVERE, null, ex);

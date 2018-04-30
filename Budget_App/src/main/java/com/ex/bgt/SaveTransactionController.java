@@ -18,7 +18,7 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 
-public class TransactionController {
+public class SaveTransactionController {
 
     @FXML
     private MenuButton categories;

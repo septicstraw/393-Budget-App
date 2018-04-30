@@ -25,7 +25,7 @@ import javafx.stage.Stage;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.control.Button;
 
-public class CategoryController {
+public class SaveCategoryController {
 
     @FXML
     private TextField name;
@@ -68,7 +68,7 @@ public class CategoryController {
     }
     
     @FXML
-    void transactionRedirect(ActionEvent event) {
+    void redirectSaveTx(ActionEvent event) {
     	Parent root;
     	Stage stage;
     	try {
@@ -79,7 +79,7 @@ public class CategoryController {
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {
-			Logger.getLogger(CategoryController.class.getName()).log(Level.SEVERE, null, ex);
+			Logger.getLogger(SaveCategoryController.class.getName()).log(Level.SEVERE, null, ex);
 		}
     }
 
