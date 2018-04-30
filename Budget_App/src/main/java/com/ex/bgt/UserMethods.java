@@ -71,13 +71,18 @@ public class UserMethods
 			rollingTotal += catMeth.resetSubcategoryFunds(thisGuy, category);
 			catDao.saveCategory(category);
 		}
+		Timestamp time = new Timestamp(System.currentTimeMillis());
+		changeMoney(catlist.get(0), rollingTotal, "Rollover Total Added to First Category", time);
+		catDao.saveCategory(catlist.get(0));
 		return rollingTotal;
 	}
 	
 	public void checkDate(User thisGuy)
 	{
-		Calendar cal = Calendar.getInstance();
-		if(cal.DAY_OF_MONTH == 1)
+		Calendar c = new GregorianCalendar();
+		Date date = new Date();
+		c.setTime(date)
+		if(c.get(Calendar.DAY_OF_MONTH) == 1)
 		{
 			rollover(thisGuy);
 		}
