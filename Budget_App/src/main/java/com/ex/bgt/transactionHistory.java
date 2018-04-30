@@ -59,6 +59,11 @@ public class transactionHistory extends Application
         txGrid.add(scenetitle, 0, 0, 2, 1);
         Scene scene = new Scene(txGrid, 1000, 1000);
         
+        Stage stage = new Stage();
+        stage.setTitle("View Transaction History");
+        stage.setScene(scene);
+        stage.show();
+        
         
     	List<BgtTransaction> transList = Context.getInstance().currentUser().getTransactionList();
     	
