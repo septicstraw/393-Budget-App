@@ -7,7 +7,7 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ex.bgt.CategoryController">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ex.bgt.SaveCategoryController">
    <children>
       <TabPane prefHeight="717.0" prefWidth="876.0" tabClosingPolicy="UNAVAILABLE">
         <tabs>
@@ -28,7 +28,6 @@
 	                    <Button layoutX="407.0" layoutY="482.0" mnemonicParsing="false" onAction="#saveCategory" text="Submit" />
 	                    <Button layoutX="120.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectSaveTx" text="Save Transactions" />
 					    <Button layoutX="270.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectTx" text="View Transactions" />
-					    <Button layoutX="420.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectCreateCat" text="Save Categories" />
 					    <Button layoutX="570.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectViewCat" text="View Categories" />
                      </children>
                   </AnchorPane>

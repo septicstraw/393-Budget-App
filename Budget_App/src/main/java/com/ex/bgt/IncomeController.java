@@ -7,6 +7,7 @@ import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -25,7 +26,7 @@ public class IncomeController {
     		System.out.println("here\n");
     		root = FXMLLoader.load(getClass().getResource("saveCategory.fxml"));
     		Scene scene = new Scene(root);
-    		stage = (Stage) redirectBtn.getScene().getWindow();
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {
@@ -41,7 +42,8 @@ public class IncomeController {
     		System.out.println("here\n");
     		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
     		Scene scene = new Scene(root);
-    		stage = (Stage) redirectBtn.getScene().getWindow();
+    		//Node node;
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {
@@ -57,7 +59,7 @@ public class IncomeController {
     		System.out.println("here\n");
     		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
     		Scene scene = new Scene(root);
-    		stage = (Stage) redirectBtn.getScene().getWindow();
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {
@@ -73,7 +75,7 @@ public class IncomeController {
     		System.out.println("here\n");
     		root = FXMLLoader.load(getClass().getResource("viewCategory.fxml"));
     		Scene scene = new Scene(root);
-    		stage = (Stage) redirectBtn.getScene().getWindow();
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {

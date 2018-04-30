@@ -17,6 +17,7 @@ import com.ex.impl.UserDaoImpl;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
@@ -38,9 +39,9 @@ public class SaveCategoryController {
 
     @FXML
     private TextField priority;
-    
+        
     @FXML
-    private Button redirectSaveTxBtn;
+    private Button redirectBtn;
 
     @FXML
     void saveCategory(ActionEvent event) {
@@ -67,6 +68,8 @@ public class SaveCategoryController {
     	Context.getInstance().setCurrentUser(usr);    	
     }
     
+    
+    
     @FXML
     void redirectSaveTx(ActionEvent event) {
     	Parent root;
@@ -75,12 +78,45 @@ public class SaveCategoryController {
     		System.out.println("here\n");
     		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
     		Scene scene = new Scene(root);
-    		stage = (Stage) redirectSaveTxBtn.getScene().getWindow();
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
     		stage.show();
 		} catch (IOException ex) {
 			Logger.getLogger(SaveCategoryController.class.getName()).log(Level.SEVERE, null, ex);
 		}
     }
+    
+    @FXML
+    void redirectTx(ActionEvent event) {
+    	Parent root;
+    	Stage stage;
+    	try {
+    		System.out.println("here\n");
+    		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
+    		Scene scene = new Scene(root);
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		stage.setScene(scene);
+    		stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(SaveCategoryController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+    }
+
+    @FXML
+    void redirectViewCat(ActionEvent event) {
+    	Parent root;
+    	Stage stage;
+    	try {
+    		System.out.println("here\n");
+    		root = FXMLLoader.load(getClass().getResource("viewCategory.fxml"));
+    		Scene scene = new Scene(root);
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		stage.setScene(scene);
+    		stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(SaveCategoryController.class.getName()).log(Level.SEVERE, null, ex);
+		}
+    }
+
 
 }

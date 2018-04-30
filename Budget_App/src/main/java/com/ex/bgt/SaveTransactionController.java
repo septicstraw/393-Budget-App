@@ -1,7 +1,10 @@
 package com.ex.bgt;
 
+import java.io.IOException;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.bgt.domain.Category;
@@ -12,11 +15,16 @@ import com.ex.impl.TransactionDaoImpl;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.DatePicker;
 import javafx.scene.control.MenuButton;
 import javafx.scene.control.MenuItem;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.stage.Stage;
 
 public class SaveTransactionController {
 
@@ -62,22 +70,66 @@ public class SaveTransactionController {
     
     @FXML
     void redirectCreateCat(ActionEvent event) {
-
+    	Parent root;
+    	Stage stage;
+    	try {
+    		System.out.println("here\n");
+    		root = FXMLLoader.load(getClass().getResource("saveCategory.fxml"));
+    		Scene scene = new Scene(root);
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		stage.setScene(scene);
+    		stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(SaveTransactionController.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 
     @FXML
     void redirectHome(ActionEvent event) {
-
+    	Parent root;
+    	Stage stage;
+    	try {
+    		System.out.println("here\n");
+    		root = FXMLLoader.load(getClass().getResource("income.fxml"));
+    		Scene scene = new Scene(root);
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		stage.setScene(scene);
+    		stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(SaveTransactionController.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 
     @FXML
     void redirectTx(ActionEvent event) {
-
+    	Parent root;
+    	Stage stage;
+    	try {
+    		System.out.println("here\n");
+    		root = FXMLLoader.load(getClass().getResource("transactionHistory.fxml"));
+    		Scene scene = new Scene(root);
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		stage.setScene(scene);
+    		stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(SaveTransactionController.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 
     @FXML
     void redirectViewCat(ActionEvent event) {
-
+    	Parent root;
+    	Stage stage;
+    	try {
+    		System.out.println("here\n");
+    		root = FXMLLoader.load(getClass().getResource("viewCategory.fxml"));
+    		Scene scene = new Scene(root);
+    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
+    		stage.setScene(scene);
+    		stage.show();
+		} catch (IOException ex) {
+			Logger.getLogger(SaveTransactionController.class.getName()).log(Level.SEVERE, null, ex);
+		}
     }
 
 }
