@@ -48,15 +48,11 @@ public class transactionHistory
 	@FXML
 	private AnchorPane ap;
 
-<<<<<<< HEAD
 	public static void main(String[] args) 
 	{
     }
 	
     
-=======
-	  
->>>>>>> c6f3cbdb9fa009b58eccbf1628ad712b2f0a1c6f
     @FXML
     public void initialize() 
     {
