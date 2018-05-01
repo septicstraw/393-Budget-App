@@ -3,6 +3,7 @@ package com.ex.bgt;
 import java.util.Calendar;
 import java.util.List;
 import java.util.Date;
+import java.util.GregorianCalendar;
 
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.bgt.domain.Category;
@@ -71,13 +72,18 @@ public class UserMethods
 			rollingTotal += catMeth.resetSubcategoryFunds(thisGuy, category);
 			catDao.saveCategory(category);
 		}
+		Timestamp time = new Timestamp(System.currentTimeMillis());
+		changeMoney(catList.get(0), rollingTotal, "Rollover Total Added to First Category", thisGuy);
+		catDao.saveCategory(catList.get(0));
 		return rollingTotal;
 	}
 	
 	public void checkDate(User thisGuy)
 	{
-		Calendar cal = Calendar.getInstance();
-		if(cal.DAY_OF_MONTH == 1)
+		Calendar c = new GregorianCalendar();
+		Date date = new Date();
+		c.setTime(date);
+		if(c.get(Calendar.DAY_OF_MONTH) == 1)
 		{
 			rollover(thisGuy);
 		}
