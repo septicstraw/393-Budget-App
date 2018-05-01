@@ -4,6 +4,12 @@ import java.io.IOException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import com.ex.bgt.domain.Context;
+import com.ex.bgt.domain.Income;
+import com.ex.bgt.domain.User;
+import com.ex.dao.UserDao;
+import com.ex.impl.UserDaoImpl;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -17,6 +23,27 @@ public class IncomeController {
 
 	@FXML
     private Button redirectBtn;
+	
+	@FXML
+	private double amount;
+	
+	private User usr = Context.getInstance().currentUser();
+	
+	private Income income;
+	
+	@FXML
+	void initialize() {
+		amount = income.getAmount();
+	}
+	
+	@FXML
+	void saveIncome(ActionEvent event) {
+		income.setAmount(amount);
+		usr.setIncome(income);
+		UserDao usrDao = new UserDaoImpl();
+		usrDao.updateUser(usr);
+		Context.getInstance().setCurrentUser(usr);
+	}
 	
     @FXML
     void redirectCreateCat(ActionEvent event) {

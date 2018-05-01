@@ -1,6 +1,8 @@
 package com.ex.impl;
 
 import java.io.Serializable;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.Session;
 import org.hibernate.Transaction;
@@ -31,6 +33,7 @@ public class IncomeDaoImpl implements IncomeDao {
 			return s;
 		} catch (Exception ex) {
 			if (tx != null) {
+				Logger.getLogger(IncomeDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
 				tx.rollback();
 			}
 			return null;
