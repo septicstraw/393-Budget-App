@@ -71,28 +71,11 @@ public class SaveCategoryController {
     
     
     @FXML
-    void redirectSaveTx(ActionEvent event) {
+    void redirectHome(ActionEvent event) {
     	Parent root;
     	Stage stage;
     	try {
-    		System.out.println("here\n");
-    		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
-    		Scene scene = new Scene(root);
-    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-    		stage.setScene(scene);
-    		stage.show();
-		} catch (IOException ex) {
-			Logger.getLogger(SaveCategoryController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-    }
-    
-    @FXML
-    void redirectTx(ActionEvent event) {
-    	Parent root;
-    	Stage stage;
-    	try {
-    		System.out.println("here\n");
-    		root = FXMLLoader.load(getClass().getResource("transactions.fxml"));
+    		root = FXMLLoader.load(getClass().getResource("income.fxml"));
     		Scene scene = new Scene(root);
     		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
@@ -102,21 +85,6 @@ public class SaveCategoryController {
 		}
     }
 
-    @FXML
-    void redirectViewCat(ActionEvent event) {
-    	Parent root;
-    	Stage stage;
-    	try {
-    		System.out.println("here\n");
-    		root = FXMLLoader.load(getClass().getResource("viewCategory.fxml"));
-    		Scene scene = new Scene(root);
-    		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
-    		stage.setScene(scene);
-    		stage.show();
-		} catch (IOException ex) {
-			Logger.getLogger(SaveCategoryController.class.getName()).log(Level.SEVERE, null, ex);
-		}
-    }
 
 
 }

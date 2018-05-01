@@ -81,16 +81,19 @@ public class SaveTransactionController {
 	void saveTransaction(ActionEvent event) {
 		CategoryDao catDao = new CategoryDaoImpl();
 		TransactionDao txDao = new TransactionDaoImpl(); 
+		User usr = Context.getInstance().currentUser();
+		Category cat = catDao.getCategoryById(catID);
 		BgtTransaction tx = new BgtTransaction();
 		tx.setTransactionUser(usr);
 		tx.setTransactionAmount(Double.parseDouble(amount.getText()));
-		//Instant instant = Instant.from(localDate.atStartOfDay(ZoneId.systemDefault()));
-		//Date date = Date.from(instant);
+		cat.setCurrentFunds(cat.getCurrentFunds() - Double.parseDouble(amount.getText()));
+		catDao.updateCategory(cat);
 		java.sql.Date date = java.sql.Date.valueOf(localDate);
 		java.sql.Timestamp timestamp = new java.sql.Timestamp(date.getTime());
 		tx.setTransactionCategory(catDao.getCategoryById(catID));
 		tx.setTransactionDate(timestamp);
 		tx.setTransactionNotes(notes.getText());
+		
 		txDao.saveTransaction(tx);
 		System.out.println("saved\n");
 	}

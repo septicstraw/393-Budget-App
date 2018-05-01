@@ -25,21 +25,24 @@ public class UserMethods
 	{
 		double temp = c.getCurrentFunds();
 		temp+= amount;
-		c.setCurrentFunds(temp);
-		Timestamp time = new Timestamp(System.currentTimeMillis());
-		List tempList = thisGuy.getTransactionList();
-		tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy, c.getCurrentFunds()));
-		thisGuy.setTransactionList(tempList);
-		
-		if(c.getCurrentFunds() < 10)
+		if(temp >= 0)
 		{
-			rearrange(thisGuy, c);
+			c.setCurrentFunds(temp);
+			Timestamp time = new Timestamp(System.currentTimeMillis());
+			List tempList = thisGuy.getTransactionList();
+			tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy, c.getCurrentFunds()));
+			thisGuy.setTransactionList(tempList);
+			
+			if(c.getCurrentFunds() < 10)
+			{
+				rearrange(thisGuy, c);
+			}
+			
+			UserDao usDao = new UserDaoImpl();
+			usDao.updateUser(thisGuy);
+			CategoryDao catDao = new CategoryDaoImpl();
+			catDao.updateCategory(c);
 		}
-		
-		UserDao usDao = new UserDaoImpl();
-		usDao.updateUser(thisGuy);
-		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.updateCategory(c);
 	}
 	
 	public void changeMoneySubCategory(Category c, SubCategory s, double amount, String notes, User thisGuy)
