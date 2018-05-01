@@ -13,7 +13,10 @@ import com.ex.bgt.domain.Category;
 import com.ex.bgt.domain.Context;
 import com.ex.bgt.domain.SubCategory;
 import com.ex.bgt.domain.User;
+import com.ex.dao.CategoryDao;
 import com.ex.dao.UserDao;
+import com.ex.dao.util.ConnectionUtil;
+import com.ex.impl.CategoryDaoImpl;
 import com.ex.impl.UserDaoImpl;
 
 import javafx.application.Application;
@@ -87,7 +90,35 @@ public class categoryList {
     				+ "Priority: " + cat.getPriority() + " --- "
     				+ "Subcategories" + subcatListString.toString());
     		System.out.println(info.toString());
+    		int thisCatId = cat.getId();
     		catGrid.add(info, 0, displayPadder);
+    		
+    		Button deleteButton = new Button();
+    		deleteButton.setText("Delete");
+    		deleteButton.setOnAction(new EventHandler<ActionEvent>() {
+        		public void handle(ActionEvent e) {
+//        			UserMethods usrMethods = new UserMethods();
+//        			usrMethods.rollover(usr);
+        			
+        			Node  source = (Node)  e.getSource(); 
+        			Stage stage  = (Stage) source.getScene().getWindow();
+        		    stage.close();
+        		    
+        		    System.out.println(thisCatId);
+        		    
+        			CategoryDao catDao = new CategoryDaoImpl();
+        			catDao.deleteCategory(catDao.getCategoryById(thisCatId));
+        		    
+        		    UserDao usrDao = new UserDaoImpl();
+        		    System.out.println(usr.getID());
+        		    Context.getInstance().setCurrentUser(usrDao.getUserById(usr.getID()));
+        			
+        			
+        			initialize();
+        		}
+        	});
+    		catGrid.add(deleteButton, 1 , displayPadder);
+    		
     		displayPadder += 2;
     	}
     	Button rolloverButton = new Button();

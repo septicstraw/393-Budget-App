@@ -2,6 +2,8 @@ package com.ex.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
@@ -17,7 +19,7 @@ public class CategoryDaoImpl implements CategoryDao {
 	public Category getCategoryById(int id) {
 		Session session = ConnectionUtil.getSession();
 		Category cat = (Category) session.load(Category.class, id);
-		
+		session.close();
 		return cat;
 	}
 	
@@ -83,11 +85,13 @@ public class CategoryDaoImpl implements CategoryDao {
 		
 		try {
 			tx = session.beginTransaction();
+			
 			session.delete(category);
 			System.out.println(category);
 			tx.commit();
 		} catch (Exception ex) {
 			if (tx != null) {
+				Logger.getLogger(CategoryDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
 				tx.rollback();
 			}
 		} finally {
