@@ -48,11 +48,6 @@ public class transactionHistory
 	@FXML
 	private AnchorPane ap;
 
-	public static void main(String[] args) 
-	{
-    }
-	
-    
     @FXML
     public void initialize() 
     {

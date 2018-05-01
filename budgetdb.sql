@@ -182,17 +182,66 @@ CREATE SEQUENCE public.users_id_seq
 ALTER TABLE public.users_id_seq OWNER TO postgres;
 
 --
+-- Data for Name: category; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.category (id, currentfunds, initialfunds, name, priority, userid) FROM stdin;
+3	200	200	Food	1	2
+4	1000	1000	Pants	2	2
+2	-1615	100	Electronics	3	2
+\.
+
+
+--
+-- Data for Name: income; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.income (id, amount, payeriod, rollover, userid) FROM stdin;
+3	1	1	1	2
+\.
+
+
+--
+-- Data for Name: subcategory; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.subcategory (id, currentfunds, initialfunds, name, priority, category_id) FROM stdin;
+\.
+
+
+--
+-- Data for Name: transaction; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.transaction (id, amount, date, notes, category_id, userid) FROM stdin;
+1	200	2018-04-25 00:00:00	notes	2	2
+2	15	2018-04-17 00:00:00	HDMI cable	2	2
+3	1900	2018-04-30 00:00:00	Thing	2	2
+4	-100	2018-04-30 00:00:00		2	2
+\.
+
+
+--
+-- Data for Name: users; Type: TABLE DATA; Schema: public; Owner: postgres
+--
+
+COPY public.users (id, email, first_name, last_name, password) FROM stdin;
+2	nickverrilli@gmail.com	Nick	Verrilli	1216985755
+\.
+
+
+--
 -- Name: category_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.category_id_seq', 1, true);
+SELECT pg_catalog.setval('public.category_id_seq', 4, true);
 
 
 --
 -- Name: income_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.income_id_seq', 1, false);
+SELECT pg_catalog.setval('public.income_id_seq', 3, true);
 
 
 --
@@ -206,14 +255,14 @@ SELECT pg_catalog.setval('public.subcategory_id_seq', 1, false);
 -- Name: transaction_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.transaction_id_seq', 1, false);
+SELECT pg_catalog.setval('public.transaction_id_seq', 4, true);
 
 
 --
 -- Name: users_id_seq; Type: SEQUENCE SET; Schema: public; Owner: postgres
 --
 
-SELECT pg_catalog.setval('public.users_id_seq', 1, true);
+SELECT pg_catalog.setval('public.users_id_seq', 2, true);
 
 
 --
