@@ -17,6 +17,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.TextField;
 import javafx.stage.Stage;
 
 public class IncomeController {
@@ -25,7 +26,7 @@ public class IncomeController {
     private Button redirectBtn;
 	
 	@FXML
-	private double amount;
+	private TextField amount;
 	
 	private User usr = Context.getInstance().currentUser();
 	
@@ -33,13 +34,12 @@ public class IncomeController {
 	
 	@FXML
 	void initialize() {
-		amount = income.getAmount();
+		amount.setText(usr.getIncome().getAmount() + "");
 	}
 	
 	@FXML
 	void saveIncome(ActionEvent event) {
-		income.setAmount(amount);
-		usr.setIncome(income);
+		usr.getIncome().setAmount(Double.parseDouble(amount.getText()));
 		UserDao usrDao = new UserDaoImpl();
 		usrDao.updateUser(usr);
 		Context.getInstance().setCurrentUser(usr);
