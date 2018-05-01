@@ -1,9 +1,12 @@
 package com.ex.bgt;
 
+import java.io.IOException;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.bgt.domain.Category;
@@ -17,9 +20,11 @@ import javafx.application.Application;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Node;
+import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -65,7 +70,6 @@ public class categoryList {
         stage.setScene(scene);
         stage.show();
         
-        
     	List<Category> catList = Context.getInstance().currentUser().getCategoryList();
  
     	int displayPadder = 1;
@@ -104,5 +108,29 @@ public class categoryList {
     		}
     	});
     	catGrid.add(rolloverButton, 0, displayPadder);
+    	
+    	Button backToHome = new Button();
+    	backToHome.setText("Home");
+    	backToHome.setOnAction(new EventHandler<ActionEvent>() {
+    		public void handle(ActionEvent e) {
+    			UserMethods usrMethods = new UserMethods();
+    			Stage stage = (Stage) backToHome.getScene().getWindow();
+    		    stage.close();
+    		    
+    		    Parent root;
+    	    	Stage stageHome;
+    	    	try {
+    	    		System.out.println("here\n");
+    	    		root = FXMLLoader.load(getClass().getResource("income.fxml"));
+    	    		Scene scene = new Scene(root);
+    	    		stageHome = (Stage) ((Node)e.getSource()).getScene().getWindow();
+    	    		stageHome.setScene(scene);
+    	    		stageHome.show();
+    			} catch (IOException ex) {
+    				Logger.getLogger(categoryList.class.getName()).log(Level.SEVERE, null, ex);
+    			}
+    		}
+    	});
+    	catGrid.add(backToHome, 2, displayPadder);
     }
 }

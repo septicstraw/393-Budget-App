@@ -9,7 +9,7 @@
       <Button layoutX="50.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectSaveTx" text="Save Transactions" />
       <Button layoutX="200.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectTx" text="View Transactions" />
       <Button layoutX="350.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectCreateCat" text="Save Categories" />
-      <Button layoutX="500.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectViewCat" text="View Categories" />
+      <Button layoutX="500.0" layoutY="521.0" mnemonicParsing="false" onAction="#redirectViewCats" text="View Categories" />
       <Text layoutX="374.0" layoutY="61.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Income" />
    </children>
 </AnchorPane>
