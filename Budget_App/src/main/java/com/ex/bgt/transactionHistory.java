@@ -30,6 +30,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -39,14 +40,16 @@ import javafx.scene.text.FontWeight;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-public class transactionHistory extends Application 
+public class transactionHistory
 {
 	@FXML
 	private GridPane txGrid;
+	
+	@FXML
+	private AnchorPane ap;
 
 	public static void main(String[] args) 
 	{
-        launch(args);
     }
 	
     
@@ -109,32 +112,32 @@ public class transactionHistory extends Application
     }
 
 
-	@Override
-	public void start(Stage primaryStage) throws Exception {
-		txGrid = new GridPane();
-		txGrid.setAlignment(Pos.CENTER);
-	        txGrid.setHgap(10);
-	        txGrid.setVgap(10);
-	        txGrid.setPadding(new Insets(25, 25, 25, 25));
-	        System.out.println("start");
-
-	        Text scenetitle = new Text("Transaction History");
-	        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
-	        txGrid.add(scenetitle, 0, 0, 2, 1);
-	        Scene scene = new Scene(txGrid, 1000, 1000);
-	        
-	    	List<BgtTransaction> transList = Context.getInstance().currentUser().getTransactionList();
-	    	
-	    	for(BgtTransaction transact: transList)
-	    	{
-	    		Label info = new Label("Date: " + transact.getTransactionDate() + " --- "
-	    				+ "Category: " + transact.getTransactionCategory().getName() + " --- "
-	    				+ "Amount: " + transact.getTransactionAmount() + " --- "
-	    				+ "Notes: " + transact.getTransactionNotes());
-	    		System.out.println(info.toString());
-	    		txGrid.add(info, 0, 0);
-	    	}
-	}
+//	@Override
+//	public void start(Stage primaryStage) throws Exception {
+//		txGrid = new GridPane();
+//		txGrid.setAlignment(Pos.CENTER);
+//	        txGrid.setHgap(10);
+//	        txGrid.setVgap(10);
+//	        txGrid.setPadding(new Insets(25, 25, 25, 25));
+//	        System.out.println("start");
+//
+//	        Text scenetitle = new Text("Transaction History");
+//	        scenetitle.setFont(Font.font("Tahoma", FontWeight.NORMAL, 20));
+//	        txGrid.add(scenetitle, 0, 0, 2, 1);
+//	        Scene scene = new Scene(txGrid, 1000, 1000);
+//	        
+//	    	List<BgtTransaction> transList = Context.getInstance().currentUser().getTransactionList();
+//	    	
+//	    	for(BgtTransaction transact: transList)
+//	    	{
+//	    		Label info = new Label("Date: " + transact.getTransactionDate() + " --- "
+//	    				+ "Category: " + transact.getTransactionCategory().getName() + " --- "
+//	    				+ "Amount: " + transact.getTransactionAmount() + " --- "
+//	    				+ "Notes: " + transact.getTransactionNotes());
+//	    		System.out.println(info.toString());
+//	    		txGrid.add(info, 0, 0);
+//	    	}
+//	}
     
     
 

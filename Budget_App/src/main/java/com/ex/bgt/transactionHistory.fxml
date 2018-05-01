@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<AnchorPane prefHeight="569.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ex.bgt.transactionHistory">
+<AnchorPane id="aptx" prefHeight="569.0" prefWidth="685.0" xmlns="http://javafx.com/javafx/9.0.4" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.ex.bgt.transactionHistory">
    <children>
       <GridPane fx:id="txGrid" layoutX="243.0" layoutY="240.0">
         <columnConstraints>
