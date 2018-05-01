@@ -17,7 +17,7 @@ public class CategoryMethods
 		double current = c.getCurrentFunds();
 		c.setCurrentFunds(c.getInitialFunds());
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 		return current;
 	}
 	
@@ -30,10 +30,10 @@ public class CategoryMethods
 		{
 			rollingTotal += sub.getCurrentFunds();
 			sub.setCurrentFunds(sub.getInitialFunds());
-			subDao.saveSubCategory(sub);
+			subDao.updateSubCategory(sub);
 		}
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 		return rollingTotal;
 	}
 	

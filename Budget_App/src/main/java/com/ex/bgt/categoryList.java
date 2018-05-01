@@ -92,10 +92,15 @@ public class categoryList {
     		public void handle(ActionEvent e) {
     			UserMethods usrMethods = new UserMethods();
     			usrMethods.rollover(usr);
-    			initialize();
+    			
     			Node  source = (Node)  e.getSource(); 
     			Stage stage  = (Stage) source.getScene().getWindow();
     		    stage.close();
+    		    
+    		    UserDao usrDao = new UserDaoImpl();
+    		    System.out.println(usr.getID());
+    		    Context.getInstance().setCurrentUser(usrDao.getUserById(usr.getID()));
+    			initialize();
     		}
     	});
     	catGrid.add(rolloverButton, 0, displayPadder);

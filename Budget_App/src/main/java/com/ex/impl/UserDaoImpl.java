@@ -19,7 +19,7 @@ public class UserDaoImpl implements UserDao {
 	public User getUserById(int id) {
 		Session session = ConnectionUtil.getSession();
 		User usr = (User) session.load(User.class, id);
-		session.close();
+		//session.close();
 		return usr;
 	}
 
@@ -75,7 +75,7 @@ public class UserDaoImpl implements UserDao {
 			if (tx != null) {
 				tx.rollback();
 			}
-			session.close();
+			//session.close();
 		}
 	}
 

@@ -37,9 +37,9 @@ public class UserMethods
 		}
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 	}
 	
 	public void changeMoneySubCategory(Category c, SubCategory s, double amount, String notes, User thisGuy)
@@ -53,11 +53,11 @@ public class UserMethods
 		thisGuy.setTransactionList(tempList);
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 		SubCategoryDao subDao = new SubCategoryDaoImpl();
-		subDao.saveSubCategory(s);
+		subDao.updateSubCategory(s);
 	}
 	
 	public double rollover(User thisGuy)
@@ -70,11 +70,11 @@ public class UserMethods
 		{
 			rollingTotal += catMeth.resetMoney(thisGuy, category);
 			rollingTotal += catMeth.resetSubcategoryFunds(thisGuy, category);
-			catDao.saveCategory(category);
+			catDao.updateCategory(category);
 		}
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		changeMoney(catList.get(0), rollingTotal, "Rollover Total Added to First Category", thisGuy);
-		catDao.saveCategory(catList.get(0));
+		catDao.updateCategory(catList.get(0));
 		return rollingTotal;
 	}
 	
@@ -110,9 +110,9 @@ public class UserMethods
 		c.setInitialFunds(amount);
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 	}
 	
 	public void changeSubCategoryFunds(Category c, SubCategory s, double amount, User thisGuy)
@@ -120,9 +120,9 @@ public class UserMethods
 		s.setInitialFunds(amount);
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 		SubCategoryDao subDao = new SubCategoryDaoImpl();
 		subDao.saveSubCategory(s);
 	}
