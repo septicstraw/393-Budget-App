@@ -2,12 +2,15 @@ package com.ex.impl;
 
 import java.io.Serializable;
 import java.util.List;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.criterion.Restrictions;
 import org.hibernate.Transaction;
 
+import com.ex.bgt.MainScene;
 import com.ex.bgt.domain.BgtTransaction;
 import com.ex.dao.TransactionDao;
 import com.ex.dao.util.ConnectionUtil;
@@ -43,15 +46,15 @@ public class TransactionDaoImpl implements TransactionDao {
 		Session session = ConnectionUtil.getSession();
 		Transaction tx = null;
 		Serializable s = null;
-
 		try {
 			tx = session.beginTransaction();
-			s = session.save(tx);
+			s = session.save(bgtTx);
 			System.out.println(bgtTx);
 			tx.commit();
 			return s;
 		} catch (Exception ex) {
 			if (tx != null) {
+				Logger.getLogger(TransactionDaoImpl.class.getName()).log(Level.SEVERE, null, ex);
 				tx.rollback();
 			}
 			return null;
