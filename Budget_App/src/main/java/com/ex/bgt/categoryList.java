@@ -19,6 +19,7 @@ import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -36,6 +37,7 @@ import javafx.stage.Stage;
 public class categoryList {
 	@FXML
 	private GridPane catGrid;
+	private User usr;
 
 	public static void main(String[] args) 
 	{
@@ -46,6 +48,7 @@ public class categoryList {
     public void initialize() 
     {
     	System.out.println("initialize");
+    	usr = Context.getInstance().currentUser();
         catGrid = new GridPane();
         catGrid.setAlignment(Pos.CENTER);
         catGrid.setHgap(10);
@@ -83,5 +86,18 @@ public class categoryList {
     		catGrid.add(info, 0, displayPadder);
     		displayPadder += 2;
     	}
+    	Button rolloverButton = new Button();
+    	rolloverButton.setText("Rollover");
+    	rolloverButton.setOnAction(new EventHandler<ActionEvent>() {
+    		public void handle(ActionEvent e) {
+    			UserMethods usrMethods = new UserMethods();
+    			usrMethods.rollover(usr);
+    			initialize();
+    			Node  source = (Node)  e.getSource(); 
+    			Stage stage  = (Stage) source.getScene().getWindow();
+    		    stage.close();
+    		}
+    	});
+    	catGrid.add(rolloverButton, 0, displayPadder);
     }
 }
