@@ -92,17 +92,20 @@ public class UserMethods
 	public void rearrange(User thisGuy, Category c)
 	{
 		List<Category> catList = thisGuy.getCategoryList();
+		Category transferCat = catList.get(0);
 		for(Category category: catList)
 		{
-			if(category.getPriority() < c.getPriority())
+			if(transferCat.getPriority() < category.getPriority())
 			{
-				if(category.getCurrentFunds() > 50)
-				{
-					changeMoney(category, -25, "Automatic Readjusting", thisGuy);
-					changeMoney(c, 25, "Automatic Readjusting", thisGuy);
-				}
+				transferCat = category;
 			}
 		}
+		if(transferCat.getCurrentFunds() > 50)
+		{
+			changeMoney(transferCat, -25, "Automatic Readjusting", thisGuy);
+			changeMoney(c, 25, "Automatic Readjusting", thisGuy);
+		}
+
 	}
 	
 	public void changeCategoryFunds(Category c, double amount, User thisGuy)
