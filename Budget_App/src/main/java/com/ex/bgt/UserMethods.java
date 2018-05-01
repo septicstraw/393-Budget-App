@@ -25,21 +25,24 @@ public class UserMethods
 	{
 		double temp = c.getCurrentFunds();
 		temp+= amount;
-		c.setCurrentFunds(temp);
-		Timestamp time = new Timestamp(System.currentTimeMillis());
-		List tempList = thisGuy.getTransactionList();
-		tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy, c.getCurrentFunds()));
-		thisGuy.setTransactionList(tempList);
-		
-		if(c.getCurrentFunds() < 10)
+		if(temp >= 0)
 		{
-			rearrange(thisGuy, c);
+			c.setCurrentFunds(temp);
+			Timestamp time = new Timestamp(System.currentTimeMillis());
+			List tempList = thisGuy.getTransactionList();
+			tempList.add(new BgtTransaction(amount, time, notes, c, thisGuy, c.getCurrentFunds()));
+			thisGuy.setTransactionList(tempList);
+			
+			if(c.getCurrentFunds() < 10)
+			{
+				rearrange(thisGuy, c);
+			}
+			
+			UserDao usDao = new UserDaoImpl();
+			usDao.updateUser(thisGuy);
+			CategoryDao catDao = new CategoryDaoImpl();
+			catDao.updateCategory(c);
 		}
-		
-		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
-		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
 	}
 	
 	public void changeMoneySubCategory(Category c, SubCategory s, double amount, String notes, User thisGuy)
@@ -53,11 +56,11 @@ public class UserMethods
 		thisGuy.setTransactionList(tempList);
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 		SubCategoryDao subDao = new SubCategoryDaoImpl();
-		subDao.saveSubCategory(s);
+		subDao.updateSubCategory(s);
 	}
 	
 	public double rollover(User thisGuy)
@@ -70,11 +73,11 @@ public class UserMethods
 		{
 			rollingTotal += catMeth.resetMoney(thisGuy, category);
 			rollingTotal += catMeth.resetSubcategoryFunds(thisGuy, category);
-			catDao.saveCategory(category);
+			catDao.updateCategory(category);
 		}
 		Timestamp time = new Timestamp(System.currentTimeMillis());
 		changeMoney(catList.get(0), rollingTotal, "Rollover Total Added to First Category", thisGuy);
-		catDao.saveCategory(catList.get(0));
+		catDao.updateCategory(catList.get(0));
 		return rollingTotal;
 	}
 	
@@ -92,17 +95,20 @@ public class UserMethods
 	public void rearrange(User thisGuy, Category c)
 	{
 		List<Category> catList = thisGuy.getCategoryList();
+		Category transferCat = catList.get(0);
 		for(Category category: catList)
 		{
-			if(category.getPriority() < c.getPriority())
+			if(transferCat.getPriority() < category.getPriority())
 			{
-				if(category.getCurrentFunds() > 50)
-				{
-					changeMoney(category, -25, "Automatic Readjusting", thisGuy);
-					changeMoney(c, 25, "Automatic Readjusting", thisGuy);
-				}
+				transferCat = category;
 			}
 		}
+		if(transferCat.getCurrentFunds() > 50)
+		{
+			changeMoney(transferCat, -25, "Automatic Readjusting", thisGuy);
+			changeMoney(c, 25, "Automatic Readjusting", thisGuy);
+		}
+
 	}
 	
 	public void changeCategoryFunds(Category c, double amount, User thisGuy)
@@ -110,9 +116,9 @@ public class UserMethods
 		c.setInitialFunds(amount);
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 	}
 	
 	public void changeSubCategoryFunds(Category c, SubCategory s, double amount, User thisGuy)
@@ -120,9 +126,9 @@ public class UserMethods
 		s.setInitialFunds(amount);
 		
 		UserDao usDao = new UserDaoImpl();
-		usDao.saveUser(thisGuy);
+		usDao.updateUser(thisGuy);
 		CategoryDao catDao = new CategoryDaoImpl();
-		catDao.saveCategory(c);
+		catDao.updateCategory(c);
 		SubCategoryDao subDao = new SubCategoryDaoImpl();
 		subDao.saveSubCategory(s);
 	}

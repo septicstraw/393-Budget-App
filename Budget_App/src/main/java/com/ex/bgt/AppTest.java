@@ -20,11 +20,11 @@ public class AppTest {
 	@Test
 	public void testAddUser() {
 		
-		User usr = new User("test_demo@gmail.com", 12345, "Eric", "Feinstein");
+		User usr = new User("ericfeinstein@gmail.com", 1216985755, "Eric", "Feinstein");
         UserDao usrDao = new UserDaoImpl();
         usrDao.saveUser(usr);
         
-        User usrResult = usrDao.getUserByEmail("test_demo@gmail.com");
+        User usrResult = usrDao.getUserByEmail("ericfeinstein@gmail.com");
         
         assertEquals(usr.getID(), usrResult.getID());
 	}
@@ -73,7 +73,7 @@ public class AppTest {
 	@Test
 	public void testGetSetCategoryList() {
 		UserDao usrDao = new UserDaoImpl();
-		User retrieve = usrDao.getUserByEmail("test1@gmail.com");
+		User retrieve = usrDao.getUserByEmail("ericfeinstein@gmail.com");
 		
 		List<Category> catList = retrieve.getCategoryList();
 		System.out.println("List: " + catList);
@@ -88,7 +88,7 @@ public class AppTest {
 		
 		usrDao.updateUser(retrieve);
 		
-		User result = usrDao.getUserByEmail("test1@gmail.com");
+		User result = usrDao.getUserByEmail("ericfeinstein@gmail.com");
 		
 		assertEquals(retrieve.getCategoryList().get(0).getName(), result.getCategoryList().get(0).getName());
 	}

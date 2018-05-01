@@ -81,7 +81,7 @@ public class MainScene extends Application {
 				if (usr != null && (usr.getPass() == pwBox.getText().hashCode())) {
 					Context.getInstance().setCurrentUser(usr);
 					try {
-						FXMLLoader loader = new FXMLLoader(getClass().getResource("categoryList.fxml"));
+						FXMLLoader loader = new FXMLLoader(getClass().getResource("income.fxml"));
 						scene.setRoot((Parent) loader.load());
 					} catch (IOException ex) {
 						Logger.getLogger(MainScene.class.getName()).log(Level.SEVERE, null, ex);

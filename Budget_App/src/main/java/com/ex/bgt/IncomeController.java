@@ -68,12 +68,12 @@ public class IncomeController {
     }
 
     @FXML
-    void redirectViewCat(ActionEvent event) {
+    void redirectViewCats(ActionEvent event) {
     	Parent root;
     	Stage stage;
     	try {
     		System.out.println("here\n");
-    		root = FXMLLoader.load(getClass().getResource("viewCategory.fxml"));
+    		root = FXMLLoader.load(getClass().getResource("categoryList.fxml"));
     		Scene scene = new Scene(root);
     		stage = (Stage) ((Node)event.getSource()).getScene().getWindow();
     		stage.setScene(scene);
