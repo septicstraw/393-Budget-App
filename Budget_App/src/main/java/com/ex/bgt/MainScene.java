@@ -46,7 +46,7 @@ public class MainScene extends Application {
 		grid.setVgap(10);
 		grid.setPadding(new Insets(25, 25, 25, 25));
 
-		final Scene scene = new Scene(grid, 300, 275);
+		final Scene scene = new Scene(grid, 500, 400);
 		primaryStage.setScene(scene);
 
 		Text scenetitle = new Text("Welcome");

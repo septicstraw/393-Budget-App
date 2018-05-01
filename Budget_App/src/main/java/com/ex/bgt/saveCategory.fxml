@@ -26,9 +26,7 @@
 	                    <TextField fx:id="currentFunds" layoutX="120.0" layoutY="329.0" prefHeight="26.0" prefWidth="237.0" />
 	                    <TextField fx:id="priority" layoutX="120.0" layoutY="436.0" prefHeight="26.0" prefWidth="237.0" />
 	                    <Button layoutX="407.0" layoutY="482.0" mnemonicParsing="false" onAction="#saveCategory" text="Submit" />
-	                    <Button layoutX="120.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectSaveTx" text="Save Transactions" />
-					    <Button layoutX="270.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectTx" text="View Transactions" />
-					    <Button layoutX="570.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectViewCat" text="View Categories" />
+	                    <Button layoutX="120.0" layoutY="563.0" mnemonicParsing="false" onAction="#redirectHome" text="Home" />
                      </children>
                   </AnchorPane>
             </content>

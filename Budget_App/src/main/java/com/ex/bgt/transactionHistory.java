@@ -44,12 +44,7 @@ public class transactionHistory extends Application
 	@FXML
 	private GridPane txGrid;
 
-	public static void main(String[] args) 
-	{
-        launch(args);
-    }
-	
-    
+	  
     @FXML
     public void initialize() 
     {
