@@ -82,7 +82,7 @@ public class SaveTransactionController {
 		CategoryDao catDao = new CategoryDaoImpl();
 		TransactionDao txDao = new TransactionDaoImpl(); 
 		User usr = Context.getInstance().currentUser();
-		Category cat = catDao.getCategoryById(catID);
+		Category cat = catDao.getCategoryByID(catID);
 		BgtTransaction tx = new BgtTransaction();
 		tx.setTransactionUser(usr);
 		tx.setTransactionAmount(Double.parseDouble(amount.getText()));

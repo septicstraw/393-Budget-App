@@ -23,6 +23,12 @@ public class CategoryDaoImpl implements CategoryDao {
 		return cat;
 	}
 	
+	public Category getCategoryByID(int id) {
+		Session session = ConnectionUtil.getSession();
+		Category cat = (Category) session.load(Category.class, id);
+		return cat;
+	}
+	
 	public Category getCategoryByName(String name) {
 		Session session = ConnectionUtil.getSession();
 		Criteria c = session.createCriteria(Category.class);
